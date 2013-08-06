@@ -1,0 +1,4 @@
+mvn install -DskipTests
+
+mvn eclipse:clean
+mvn eclipse:eclipse

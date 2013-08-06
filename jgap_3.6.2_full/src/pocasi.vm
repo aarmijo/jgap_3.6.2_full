@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <title>Předpověď počasí pro $city $day</title>
+        <link rel="stylesheet" type="text/css" href="wu3_base.css" />
+        <link rel="stylesheet" type="text/css" href="wu3_city.css" />
+    </head>
+    <body>
+        <div id="layerCurrent">
+            <a name="conditions"></a>
+            <div id="curConds">
+                <div id="conds_head" class="titleThin brTop5">Předpověď počasí pro $city $day</div>
+                <div class="borderBox brBot5">
+                    
+                    <div id="conds_stationselect">
+                        <div id="stationName">
+                            <div class="titleSubtle">Povětrnostní stanice</div>
+                            <div class="b">$city_short</div>
+                        </div>
+                        <div id="stationElevation">
+                            <div class="titleSubtle">Nadmořská výška</div>
+                            <div class="b">
+                                <span class="nobr"><span class="b">$elevation</span>&nbsp;m</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="conds_dashboard">
+                        <div id="hour00">
+                            <div id="nowCond">
+                                <div class="titleSubtle">Nyní</div>
+                                <div id="curIcon"><a href="" class="iconSwitchBig"><img src="wunderground_icons/${icon_now}.gif" width="44" height="44" alt="${icon_now}" class="condIcon" /></a></div>
+                                <div id="curCond">$weather</div>
+                            </div>
+                            <div id="nowTemp">
+                                <div class="titleSubtle">Teplota</div>
+                                <div id="tempActual"><span id="rapidtemp" class="pwsrt" pwsid="ILIBEREC5" pwsunit="metric" pwsvariable="tempf" english="&deg;F" metric="&deg;C" value="35.6">
+                                        <span class="nobr"><span class="b">$temperature_now</span>&nbsp;&#176;C</span>
+                                    </span></div>
+                                <div id="tempFeel">Pocit jako
+                                    <span class="nobr"><span class="b">$windchill_now</span>&nbsp;&#176;C</span>
+                                </div>
+                            </div>
+                            <div id="nowWind">
+                                <div class="titleSubtle nobr">Vítr(km/h)</div>
+                                <div id="windCompassContainer">
+                                    <span id="windCompass" class="pwsrt" pwsid="ILIBEREC5" pwssetobject="winddir" pwsunit="metric" pwsvariable="winddir" english="" metric="" value="292"></span>
+                                    <span id="windCompassSpeed" class="pwsrt" pwsid="ILIBEREC5" pwsunit="metric" pwsvariable="windspeedmph" english="" metric="">$wind_kmh</span>
+                                </div>
+                            </div>
+                            <div id="nowSuns">
+                                <div class="titleSubtle">Východ/západ slunce</div>
+                                <div id="sRise"><span class="b">$sunrise</span></div>
+                                <div id="sSet"><span class="b">$sunset</span></div>
+                            </div>
+                            <div id="nowMoon" class="moonNorth">
+                                <div class="titleSubtle">Měsíc</div>
+                                <div id="mPhase" class="pfull">TODO</div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div id="hourZZ">
+
+                            #set( $count = 1 )
+                            #foreach( $forecast in $forecastList )
+                              <div class="foreGlance">
+                                <div class="titleSubtle">$forecast.day</div>
+                                <div class="foreSummary">
+                                    <a class="iconSwitchSmall"><img src="wunderground_icons/${forecast.icon}.gif" alt="${forecast.conditions}" title="$forecast.conditions}" class="condIcon" /></a>
+                                    <span class="b">$forecast.temperature_max</span> | $forecast.temperature_min &deg;C
+                                </div>
+                                <div class="foreCondition">$forecast.conditions<div>$forecast.pop% Pravděpodobnost srážek</div></div>
+                            </div>
+                              #set( $count = $count + 1 )
+                            #end
+
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div id="conds_tabs">
+                        <div id="detailTabs">
+                            <a href="" id="conds_details_cur" class="contentTabActive brTop5">Současná data</a>
+                        </div>
+                    </div>
+                    <div id="conds_details" class="brBot5">
+                        <div id="conds_details_cur_box">
+                            <div id="curData1">
+                                <div id="conds_details_conds">
+                                    <div class="titleSubtleBG br3">Stav</div>
+                                    <div class="dataCol1"><dfn>Tlak</dfn></div>
+                                    <div class="dataCol2 pRising">
+                                        <span class="pwsrt" pwsid="ILIBEREC5" pwsunit="metric" pwsvariable="baromin" english="inÄÅ¯" metric="hPa" value="30.41">
+                                            <b>$pressure_mb</b>&nbsp;hPa
+                                        </span>
+                                    </div>
+                                    <div class="dataCol3"><span id="ILIBEREC5_spark_pressure"></span></div>
+                                    <div class="dataCol1"><dfn>Viditelnost</dfn></div>
+                                    <div class="dataCol4">
+                                        <span class="nobr"><span class="b">$visibility_km</span>&nbsp;kilometrů</span>
+                                    </div>
+                                    <!--<div class="dataCol1">ZataÅ¾eno</div>
+                                    <div class="dataCol4">
+                                        <span class="b">Polojasno</span>
+                                        <span class="nobr"><span class="b">365</span>&nbsp;m</span>
+                                        <br />
+                                        <span class="b">Skoro zataÅ¾eno</span>
+                                        <span class="nobr"><span class="b">457</span>&nbsp;m</span>
+                                        <br />
+                                        <span class="b">Skoro zataÅ¾eno</span>
+                                        <span class="nobr"><span class="b">701</span>&nbsp;m</span>
+                                        <br />
+                                    </div-->
+                                </div>
+                                <div id="conds_details_moisture">
+                                    <div class="titleSubtleBG br3">Vlhkost</div>
+                                    <div class="dataCol1"><dfn>Vlhkost</dfn></div>
+                                    <div class="dataCol4"><span class="pwsrt b" pwsid="ILIBEREC5" pwsunit="metric" pwsvariable="humidity" english="" metric="" value="98"><nobr>$relative_humidity</nobr></span>%</div>
+                                    <div class="dataCol1">Dešťové srážky</div>
+                                    <div class="dataCol4">$precip_today_string</div>
+                                    <div class="dataCol1"><dfn>Snněhová pokrývka</dfn></div>
+                                    <div class="dataCol4">TODO</div>
+                                </div>
+                            </div>
+                            <div id="curData2">
+                                <div id="conds_details_temp">
+                                    <div class="titleSubtleBG br3">Teplota</div>
+                                    <div class="dataCol1"><dfn>Ochlazování větrem</dfn></div>
+                                    <div class="dataCol2">
+                                        <span class="nobr"><span class="b">$windchill_now</span>&nbsp;&#176;C</span>
+                                    </div>
+                                    <div class="dataCol3"><span id="ILIBEREC5_spark_temperature"></span></div>
+                                    <div class="dataCol1"><dfn>Rosný bod</dfn></div>
+                                    <div class="dataCol2"><span  class="pwsrt" pwsid="ILIBEREC5" pwsunit="metric" pwsvariable="dewptf"  english="&deg;F" metric="&deg;C" value="35">
+                                            <span class="nobr"><span class="b">$dewpoint_c</span>&nbsp;&deg;C</span>
+                                        </span></div>
+                                    <div class="dataCol3"><span id="ILIBEREC5_spark_dewpoint"></span></div>
+                                </div>
+                                <div id="conds_details_wind">
+                                    <div class="titleSubtleBG br3">Vítr</div>
+                                    <div class="dataCol1">Rychlost / Směr</div>
+                                    <div class="dataCol4">
+                                        <span class="pwsrt" pwsid="ILIBEREC5" pwsunit="metric" pwsvariable="windspeedmph" english="mil/h" metric="km/h">
+                                            <span class="nobr"><span class="b">$wind_kmh</span>&nbsp;km/h</span>
+                                            / <span class="nobr"><span class="b">$wind_ms</span>&nbsp;m/s</span>
+                                        </span> od
+                                        <span class="pwsrt" pwsid="ILIBEREC5" pwsunit="metric" pwsvariable="winddir" english="" metric="" value="ZSZ">
+                                            $winddir_now
+                                        </span>
+                                    </div>
+                                    <div class="dataCol1">Nárazy větru</div>
+                                    <div class="dataCol4">
+                                        <span class="pwsrt" pwsid="ILIBEREC5" pwsunit="metric" pwsvariable="windgustmph" english="mil/h" metric="km/h">
+                                            <span class="nobr"><span class="b">$wind_gust_kmh</span>&nbsp;km/h</span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="conds_details_radarbox">
+                            <div id="curData2">
+                                <div id="conds_details_health">
+                                    <div class="titleSubtleBG br3">Zdraví</div>
+                                    <div class="dataCol1">UV záření</div>
+                                    <div class="dataCol4"><span class="b">$uv</span> ze 16</div>
+                                    <div class="dataCol1">Pyl</div>
+                                    <div class="dataCol4">TODO</div>
+                                    <div class="dataCol1">Kvalita ovzduší</div>
+                                    <div class="dataCol4">TODO</div>
+                                    <div class="dataCol1">Flu Activity</div>
+                                    <div class="dataCol4">TODO</div>
+                                </div>
+                            </div>
+                            <div id="conds_details_metar">
+                                    <div class="titleSubtleBG br3">METAR</div>
+                                    <div class="dataCol5">METAR EDDC 100920Z 29013KT 9999 SCT012 BKN015 BKN023 04/02 Q1027 NOSIG</div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+# ignore all bin directories
+# matches "bin" in any subfolder
+bin/
+
+# ignore all target directories
+target/
+
+# ignore all classes directories
+classes/
+
+# ignore all .xls and .xlsx files at the 
+# beginning of the pathname
+/*.xls
+/*.xlsx
+
+# ignore all files ending with ~
+*~ 
