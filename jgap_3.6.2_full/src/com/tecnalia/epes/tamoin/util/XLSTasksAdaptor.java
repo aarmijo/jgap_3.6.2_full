@@ -30,6 +30,8 @@ public class XLSTasksAdaptor {
 			gaTask.setWindTurbine(Integer.parseInt(xlsTask.getWindTurbineNumber()));
 			gaTask.setPriority(getPriority(xlsTask.getTaskName()));
 			gaTask.setDuration(getDuration(xlsTask.getTaskName()));
+			gaTask.setDurationSecondDay(getDurationSecondDay(xlsTask.getTaskName()));
+			gaTask.setDurationThirdDay(getDurationThirdDay(xlsTask.getTaskName()));			
 			gaTask.setMaintenanceTeams(getMaintenanceTeamsRequired(xlsTask.getTaskName()));
 			gaTask.setWindSpeedLimit(getWindSpeedLimit(xlsTask.getTaskName()));
 			gaTasksArrayList.add(gaTask);		
@@ -82,6 +84,98 @@ public class XLSTasksAdaptor {
 		return windSpeedLimit;
 	}
 
+	public int getDurationSecondDay(String taskName) {
+		int duration = 0;
+		switch (taskName) {
+		case "ACCION CORRECTORA ANALITICA":
+			duration = 0;
+			break;
+		case "CAMBIO ACEITE GH":
+			duration = 0;
+			break;
+		case "CAMBIO ACEITE MULTI":
+			duration = 0;
+			break;
+		case "CAMBIO ACEITE REDUCTORAS YAW":
+			duration = 0;
+			break;
+		case "CAMBIO RODAMIENTO GEN":
+			duration = 0;
+			break;
+		case "COMP ALINEADO":
+			duration = 0;
+			break;
+		case "COP":
+			duration = 0;
+			break;
+		case "GC GENERADOR":
+			duration = 7;
+			break;
+		case "GC MULTI":
+			duration = 7;
+			break;
+		case "GC ROTOR":
+			duration = 7;
+			break;
+		case "PENDIENTE PREVENTIVO":
+			duration = 0;
+			break;
+		case "PREVENTIVO 6M":
+			duration = 0;
+			break;
+		case "PREVENTIVO OTROS":
+			duration = 0;
+			break;
+		}
+		return duration;	
+	}
+	
+	public int getDurationThirdDay(String taskName) {
+		int duration = 0;
+		switch (taskName) {
+		case "ACCION CORRECTORA ANALITICA":
+			duration = 0;
+			break;
+		case "CAMBIO ACEITE GH":
+			duration = 0;
+			break;
+		case "CAMBIO ACEITE MULTI":
+			duration = 0;
+			break;
+		case "CAMBIO ACEITE REDUCTORAS YAW":
+			duration = 0;
+			break;
+		case "CAMBIO RODAMIENTO GEN":
+			duration = 0;
+			break;
+		case "COMP ALINEADO":
+			duration = 0;
+			break;
+		case "COP":
+			duration = 0;
+			break;
+		case "GC GENERADOR":
+			duration = 0;
+			break;
+		case "GC MULTI":
+			duration = 0;
+			break;
+		case "GC ROTOR":
+			duration = 7;
+			break;
+		case "PENDIENTE PREVENTIVO":
+			duration = 0;
+			break;
+		case "PREVENTIVO 6M":
+			duration = 0;
+			break;
+		case "PREVENTIVO OTROS":
+			duration = 0;
+			break;
+		}
+		return duration;	
+	}
+	
 	public int getDuration(String taskName) {
 		int duration = 0;
 		switch (taskName) {

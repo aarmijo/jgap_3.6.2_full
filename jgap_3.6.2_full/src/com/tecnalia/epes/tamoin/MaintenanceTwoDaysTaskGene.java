@@ -3,13 +3,11 @@ package com.tecnalia.epes.tamoin;
 import org.jgap.*;
 import org.jgap.impl.*;
 
-public class MaintenanceTaskGeneGCRotor extends MaintenanceTaskGene {
+public class MaintenanceTwoDaysTaskGene extends MaintenanceTaskGene {
 
 	private static final long serialVersionUID = 1L;
 	
 	private int durationSecondDay;
-	
-	private int durationThirdDay;
 	
 	public int getDurationSecondDay() {
 		return durationSecondDay;
@@ -19,31 +17,22 @@ public class MaintenanceTaskGeneGCRotor extends MaintenanceTaskGene {
 		this.durationSecondDay = durationSecondDay;
 	}
 	
-	public int getDurationThirdDay() {
-		return durationThirdDay;
-	}
-
-	public void setDurationThirdDay(int durationThirdDay) {
-		this.durationThirdDay = durationThirdDay;
-	}
-	
 	// Constructors
-	public MaintenanceTaskGeneGCRotor(Configuration a_config, int duration, int durationSecondDay,
-			int durationThirdDay, int windFarm, int windTurbine, int maintenanceTeams)
+	public MaintenanceTwoDaysTaskGene(Configuration a_config, int duration, int durationSecondDay,
+			int windFarm, int windTurbine, int maintenanceTeams)
 			throws InvalidConfigurationException {
 		super(a_config, duration,
 				windFarm, windTurbine, maintenanceTeams);
 		this.setDurationSecondDay(durationSecondDay);
-		this.setDurationThirdDay(durationThirdDay);
-		this.setMaintenanceTeams(4);
+		this.setMaintenanceTeams(3);
 	}
 	
-	public MaintenanceTaskGeneGCRotor(Configuration a_config)
+	public MaintenanceTwoDaysTaskGene(Configuration a_config)
 			throws InvalidConfigurationException {
 		super(a_config);
 	}
 	
-	public MaintenanceTaskGeneGCRotor(Configuration a_config, FixedBinaryGene a_toCopy)
+	public MaintenanceTwoDaysTaskGene(Configuration a_config, FixedBinaryGene a_toCopy)
 			throws InvalidConfigurationException {
 		super(a_config, a_toCopy);
 	}
@@ -51,7 +40,7 @@ public class MaintenanceTaskGeneGCRotor extends MaintenanceTaskGene {
 	@Override
 	protected Gene newGeneInternal() {
 		try {
-			MaintenanceTaskGeneGCRotor result = new MaintenanceTaskGeneGCRotor(getConfiguration());
+			MaintenanceTwoDaysTaskGene result = new MaintenanceTwoDaysTaskGene(getConfiguration());
 			return result;
 		} catch (InvalidConfigurationException iex) {
 			throw new IllegalStateException(iex.getMessage());
@@ -65,9 +54,10 @@ public class MaintenanceTaskGeneGCRotor extends MaintenanceTaskGene {
 					"Random Generator must not be null!");
 		}
 		int pool[][] = { 
-				{ 1, 1, 1, 0, 0 }, 
-				{ 0, 1, 1, 1, 0 },
-				{ 0, 0, 1, 1, 1 }								
+				{ 1, 1, 0, 0, 0 }, 
+				{ 0, 1, 1, 0, 0 },
+				{ 0, 0, 1, 1, 0 }, 
+				{ 0, 0, 0, 1, 1 }				
 		};
 		int poolRow[] = pool[a_numberGenerator.nextInt(pool.length)];
 		for (int i = 0; i < poolRow.length; i++) {
@@ -89,12 +79,11 @@ public class MaintenanceTaskGeneGCRotor extends MaintenanceTaskGene {
 	@Override
 	public String toString() {
 		int len = getLength();
-		String s = "MaintenanceTaskGeneGCMulti {name:" + this.getName() + ", duration:"
-				+ this.getDuration() + ", duration2ndDay:"
-				+ this.getDurationSecondDay() + ", durationThirdDay:"  
-				+ this.getDurationThirdDay() + ", windFarm: " + this.getWindFarm() + ", windTurbine:"
+		String s = "MaintenanceTwoDaysTaskGene {name:" + this.getName() + ", duration:"
+				+ this.getDuration() + ", durationSecondDay:"
+				+ this.getDurationSecondDay() + ", windFarm:" + this.getWindFarm() + ", windTurbine:"
 				+ this.getWindTurbine() + ", maintenanceTeams:" + this.getMaintenanceTeams()
-				+ ", priority: " + this.getPriority() + ", maintenanceTeamNames: " + this.getMaintenanceTeamNames()
+				+ ", priority:" + this.getPriority() + ", maintenanceTeamNames:" + this.getMaintenanceTeamNames()
 				+ "} [";
 		int value;
 		for (int i = 0; i < len; i++) {

@@ -3,6 +3,10 @@ package com.tecnalia.epes.tamoin.util;
 public class GATask {
 	
 	private int duration;
+	
+	private int durationSecondDay;
+	
+	private int durationThirdDay;
 
 	private int windFarm;
 	
@@ -24,6 +28,22 @@ public class GATask {
 
 	public void setDuration(int duration) {
 		this.duration = duration;
+	}
+
+	public int getDurationSecondDay() {
+		return durationSecondDay;
+	}
+
+	public void setDurationSecondDay(int durationSecondDay) {
+		this.durationSecondDay = durationSecondDay;
+	}
+
+	public int getDurationThirdDay() {
+		return durationThirdDay;
+	}
+
+	public void setDurationThirdDay(int durationThirdDay) {
+		this.durationThirdDay = durationThirdDay;
 	}
 
 	public int getWindFarm() {
@@ -85,6 +105,8 @@ public class GATask {
 	public String toString() {
 		return "GATask [Name: " + name + 
 				", Duration: " + duration +
+				", DurationSecondDay: " + durationSecondDay +
+				", DurationThirdDay: " + durationThirdDay +
 				", WindFarm: " + windFarm + 
 				", WindTurbine: " + windTurbine +
 				", MaintenanceTeams: " + maintenanceTeams +

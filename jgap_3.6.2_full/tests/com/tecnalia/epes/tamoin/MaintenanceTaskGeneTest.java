@@ -316,7 +316,7 @@ public class MaintenanceTaskGeneTest
         
 		Configuration config = new DefaultConfiguration();
 		
-		String weekNumber = "08"; // 01 (162), 08 (888)
+		String weekNumber = "08"; // 01 (162), 08 (888), 03 (396)
 		
 		ArrayList<XLSTask> xlsTasksArrayList = XLSReader.readXLSTasks(weekNumber);
 		
@@ -331,14 +331,37 @@ public class MaintenanceTaskGeneTest
 		Genotype population = null;		
 		try {
 			for (int i = 0; i < sampleGenesSize; i++) {		
-				sampleGenes[i] = new MaintenanceTaskGene(config, gATasksArrayList.get(i).getDuration(),
-						gATasksArrayList.get(i).getWindFarm(), gATasksArrayList.get(i).getWindTurbine(), 
-						gATasksArrayList.get(i).getMaintenanceTeams());
-				sampleGenes[i].setToRandomValue(new StockRandomGenerator());
-			   	((MaintenanceTaskGene) sampleGenes[i]).setName(gATasksArrayList.get(i).getName());
-			   	((MaintenanceTaskGene) sampleGenes[i]).setPriority(gATasksArrayList.get(i).getPriority());
-			   	((MaintenanceTaskGene) sampleGenes[i]).setMaintenanceTeamNames(gATasksArrayList.get(i).getMaintenanceTeamNames());	   
-			   	((MaintenanceTaskGene) sampleGenes[i]).setWindSpeedLimit(gATasksArrayList.get(i).getWindSpeedLimit());	 
+				if (gATasksArrayList.get(i).getName().equals("GC GENERADOR")
+						|| gATasksArrayList.get(i).getName().equals("GC MULTI")) {
+					sampleGenes[i] = new MaintenanceTwoDaysTaskGene(config, gATasksArrayList.get(i).getDuration(), 
+							gATasksArrayList.get(i).getDurationSecondDay(), 
+							gATasksArrayList.get(i).getWindFarm(), gATasksArrayList.get(i).getWindTurbine(), 
+							gATasksArrayList.get(i).getMaintenanceTeams());
+					sampleGenes[i].setToRandomValue(new StockRandomGenerator());
+				   	((MaintenanceTaskGene) sampleGenes[i]).setName(gATasksArrayList.get(i).getName());
+				   	((MaintenanceTaskGene) sampleGenes[i]).setPriority(gATasksArrayList.get(i).getPriority());
+				   	((MaintenanceTaskGene) sampleGenes[i]).setMaintenanceTeamNames(gATasksArrayList.get(i).getMaintenanceTeamNames());	   
+				   	((MaintenanceTaskGene) sampleGenes[i]).setWindSpeedLimit(gATasksArrayList.get(i).getWindSpeedLimit());				   	
+				} else if (gATasksArrayList.get(i).getName().equals("GC ROTOR")) {
+					sampleGenes[i] = new MaintenanceThreeDaysTaskGene(config, gATasksArrayList.get(i).getDuration(), 
+							gATasksArrayList.get(i).getDurationSecondDay(), gATasksArrayList.get(i).getDurationThirdDay(),
+							gATasksArrayList.get(i).getWindFarm(), gATasksArrayList.get(i).getWindTurbine(), 
+							gATasksArrayList.get(i).getMaintenanceTeams());
+					sampleGenes[i].setToRandomValue(new StockRandomGenerator());
+				   	((MaintenanceTaskGene) sampleGenes[i]).setName(gATasksArrayList.get(i).getName());
+				   	((MaintenanceTaskGene) sampleGenes[i]).setPriority(gATasksArrayList.get(i).getPriority());
+				   	((MaintenanceTaskGene) sampleGenes[i]).setMaintenanceTeamNames(gATasksArrayList.get(i).getMaintenanceTeamNames());	   
+				   	((MaintenanceTaskGene) sampleGenes[i]).setWindSpeedLimit(gATasksArrayList.get(i).getWindSpeedLimit());						
+				} else {
+					sampleGenes[i] = new MaintenanceTaskGene(config, gATasksArrayList.get(i).getDuration(),
+							gATasksArrayList.get(i).getWindFarm(), gATasksArrayList.get(i).getWindTurbine(), 
+							gATasksArrayList.get(i).getMaintenanceTeams());
+					sampleGenes[i].setToRandomValue(new StockRandomGenerator());
+				   	((MaintenanceTaskGene) sampleGenes[i]).setName(gATasksArrayList.get(i).getName());
+				   	((MaintenanceTaskGene) sampleGenes[i]).setPriority(gATasksArrayList.get(i).getPriority());
+				   	((MaintenanceTaskGene) sampleGenes[i]).setMaintenanceTeamNames(gATasksArrayList.get(i).getMaintenanceTeamNames());	   
+				   	((MaintenanceTaskGene) sampleGenes[i]).setWindSpeedLimit(gATasksArrayList.get(i).getWindSpeedLimit());
+				}	 
 			}
 			   	IChromosome sampleChromosome = new EPESChromosome(config, sampleGenes);
 					
@@ -359,9 +382,9 @@ public class MaintenanceTaskGeneTest
 				e.printStackTrace();
 			}		
 		
-		//population.evolve();
+		// population.evolve();
 		
-		//System.out.println(population);
+		// System.out.println(population);
 		
 		for (int i = 0; i < 50*4; i++) { //500
 			population.evolve();

@@ -472,9 +472,93 @@ public class MaintenanceFitnessFunction extends FitnessFunction {
 					case "C7":
 						mTCWF1.setC7(true);
 						mTCWF1.setC7Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDuration());
+						break;			
+					default:
+						String[] teamNamesArray = maintenanceTeamName.split("\\s*,\\s*");
+						for (int k = 0; k < teamNamesArray.length; k++) {
+							switch (teamNamesArray[k]) {
+							case "C1":
+								mTCWF1.setC1(true);								
+								int taskDay = calculateTaskDay(windFarmOneMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF1.setC1Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF1.setC1Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF1.setC1Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}								
+								break;
+							case "C2":
+								mTCWF1.setC2(true);
+								taskDay = calculateTaskDay(windFarmOneMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF1.setC2Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF1.setC2Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF1.setC2Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}	
+								break;
+							case "C3":
+								mTCWF1.setC3(true);
+								taskDay = calculateTaskDay(windFarmOneMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF1.setC3Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF1.setC3Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF1.setC3Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							case "C4":
+								mTCWF1.setC4(true);
+								taskDay = calculateTaskDay(windFarmOneMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF1.setC4Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF1.setC4Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF1.setC4Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							case "C5":
+								mTCWF1.setC5(true);
+								taskDay = calculateTaskDay(windFarmOneMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF1.setC5Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF1.setC5Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF1.setC5Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							case "C6":
+								mTCWF1.setC6(true);
+								taskDay = calculateTaskDay(windFarmOneMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF1.setC6Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF1.setC6Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF1.setC6Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							case "C7":
+								mTCWF1.setC7(true);
+								taskDay = calculateTaskDay(windFarmOneMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF1.setC7Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF1.setC7Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF1.setC7Hours(windFarmOneMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							}
+						}
 						break;
-					}					
-				}					
+					}
+				}
 			}
 			int numberOfTeams = 0;			
 			if (mTCWF1.isC1()) {
@@ -575,6 +659,90 @@ public class MaintenanceFitnessFunction extends FitnessFunction {
 						mTCWF2.setC7(true);
 						mTCWF2.setC7Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDuration());
 						break;
+					default:
+						String[] teamNamesArray = maintenanceTeamName.split("\\s*,\\s*");
+						for (int k = 0; k < teamNamesArray.length; k++) {
+							switch (teamNamesArray[k]) {
+							case "C1":
+								mTCWF2.setC1(true);
+								int taskDay = calculateTaskDay(windFarmTwoMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF2.setC1Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF2.setC1Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF2.setC1Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							case "C2":
+								mTCWF2.setC2(true);
+								taskDay = calculateTaskDay(windFarmTwoMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF2.setC2Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF2.setC2Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF2.setC2Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							case "C3":
+								mTCWF2.setC3(true);
+								taskDay = calculateTaskDay(windFarmTwoMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF2.setC3Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF2.setC3Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF2.setC3Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							case "C4":
+								mTCWF2.setC4(true);
+								taskDay = calculateTaskDay(windFarmTwoMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF2.setC4Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF2.setC4Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF2.setC4Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							case "C5":
+								mTCWF2.setC5(true);
+								taskDay = calculateTaskDay(windFarmTwoMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF2.setC5Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF2.setC5Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF2.setC5Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							case "C6":
+								mTCWF2.setC6(true);
+								taskDay = calculateTaskDay(windFarmTwoMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF2.setC6Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF2.setC6Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF2.setC6Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							case "C7":
+								mTCWF2.setC7(true);
+								taskDay = calculateTaskDay(windFarmTwoMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF2.setC7Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF2.setC7Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF2.setC7Hours(windFarmTwoMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							}
+						}
+						break;
 					}					
 				}					
 			}
@@ -673,6 +841,90 @@ public class MaintenanceFitnessFunction extends FitnessFunction {
 					case "C7":
 						mTCWF3.setC7(true);
 						mTCWF3.setC7Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDuration());
+						break;
+					default:
+						String[] teamNamesArray = maintenanceTeamName.split("\\s*,\\s*");
+						for (int k = 0; k < teamNamesArray.length; k++) {
+							switch (teamNamesArray[k]) {
+							case "C1":
+								mTCWF3.setC1(true);
+								int taskDay = calculateTaskDay(windFarmThreeMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF3.setC1Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF3.setC1Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF3.setC1Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							case "C2":
+								mTCWF3.setC2(true);
+								taskDay = calculateTaskDay(windFarmThreeMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF3.setC2Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF3.setC2Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF3.setC2Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							case "C3":
+								mTCWF3.setC3(true);
+								taskDay = calculateTaskDay(windFarmThreeMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF3.setC3Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF3.setC3Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF3.setC3Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							case "C4":
+								mTCWF3.setC4(true);
+								taskDay = calculateTaskDay(windFarmThreeMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF3.setC4Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF3.setC4Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF3.setC4Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							case "C5":
+								mTCWF3.setC5(true);
+								taskDay = calculateTaskDay(windFarmThreeMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF3.setC5Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF3.setC5Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF3.setC5Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							case "C6":
+								mTCWF3.setC6(true);
+								taskDay = calculateTaskDay(windFarmThreeMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF3.setC6Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF3.setC6Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF3.setC6Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							case "C7":
+								mTCWF3.setC7(true);
+								taskDay = calculateTaskDay(windFarmThreeMaintenanceTasksArrayList.get(i), j);								
+								if (taskDay == 1) {
+									mTCWF3.setC7Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDuration());
+								} else if (taskDay == 2) {
+									mTCWF3.setC7Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDurationSecondDay());
+								} else if (taskDay == 3) {
+									mTCWF3.setC7Hours(windFarmThreeMaintenanceTasksArrayList.get(i).getDurationThirdDay());
+								}
+								break;
+							}
+						}
 						break;
 					}					
 				}					
@@ -886,6 +1138,64 @@ public class MaintenanceFitnessFunction extends FitnessFunction {
 		fitnessValue = fitnessArray[0] + fitnessArray[1] + fitnessArray[2];
 		
 		return (double) fitnessValue;		
+	}
+
+	private int calculateTaskDay(MaintenanceTaskGene maintenanceTaskGene, int j) {
+
+		if (maintenanceTaskGene instanceof MaintenanceTwoDaysTaskGene) {
+			if (j == 0) {
+				return 1;
+			}
+			if (j == 1 || j == 2 || j == 3) {
+				if (maintenanceTaskGene.getBit(j-1) == false &&
+						maintenanceTaskGene.getBit(j+1) == true) {
+					return 1;
+				} else if (maintenanceTaskGene.getBit(j-1) == true &&
+						maintenanceTaskGene.getBit(j+1) == false) {
+					return 2;
+				}
+			}
+			if (j == 4) {
+				return 2;
+			}
+		} else if (maintenanceTaskGene instanceof MaintenanceThreeDaysTaskGene) {
+			if (j == 0) {
+				return 1;
+			}
+			if (j == 1) {
+				if (maintenanceTaskGene.getBit(j-1) == true &&
+						maintenanceTaskGene.getBit(j+1) == true) {
+					return 2;
+				} else if (maintenanceTaskGene.getBit(j-1) == false &&
+						maintenanceTaskGene.getBit(j+1) == true) {
+					return 1;
+				}
+			}
+			if (j == 2) {
+				if (maintenanceTaskGene.getBit(j-1) == true &&
+						maintenanceTaskGene.getBit(j+1) == true) {
+					return 2;
+				} else if (maintenanceTaskGene.getBit(j-1) == false &&
+						maintenanceTaskGene.getBit(j+1) == true) {
+					return 1;
+				} else if (maintenanceTaskGene.getBit(j-1) == true &&
+						maintenanceTaskGene.getBit(j+1) == false) {
+					return 3;
+				}
+			}
+			if (j == 3){
+				if (maintenanceTaskGene.getBit(j-1) == true &&
+						maintenanceTaskGene.getBit(j+1) == true) {
+					return 2;
+				} else if (maintenanceTaskGene.getBit(j-1) == true &&
+						maintenanceTaskGene.getBit(j+1) == false) {
+					return 3;				}
+			}
+			if (j == 4) {
+				return 3;
+			}
+		}
+		return 0;
 	}
 
 	private int calculateTaskWeatherPriority(int windSpeedLimit, int windSpeed) {

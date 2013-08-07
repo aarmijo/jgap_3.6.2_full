@@ -108,8 +108,8 @@ public class XLSReader {
 		    			task.getMaintenanceTeamName() == null ||
 		    			task.getWindFarmNumber() == null || 
 		    			task.getTaskName() == null ||
-		    			task.getTaskName().equals("GC GENERADOR") ||
-		    			task.getTaskName().equals("GC MULTI") ||
+		    			//task.getTaskName().equals("GC GENERADOR") ||
+		    			//task.getTaskName().equals("GC MULTI") ||
 		    			task.getTaskName().equals("GC ROTOR") ||
 		    			task.getTaskName().equals("COP")) continue;		    	
 		    	filteredXlsTasksArrayList.add(task);

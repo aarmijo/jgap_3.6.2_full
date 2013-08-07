@@ -167,10 +167,10 @@ public class MaintenanceTaskGene extends FixedBinaryGene {
 	public String toString() {
 		int len = getLength();
 		String s = "MaintenanceTaskGene {name:" + name + ", duration:"
-				+ duration + ", windFarm: " + windFarm + ", windTurbine:"
+				+ duration + ", windFarm:" + windFarm + ", windTurbine:"
 				+ windTurbine + ", maintenanceTeams:" + maintenanceTeams
-				+ ", priority: " + priority + ", maintenanceTeamNames: " + maintenanceTeamNames
-				+ ", windSpeedLimit: " + windSpeedLimit
+				+ ", priority:" + priority + ", maintenanceTeamNames:" + maintenanceTeamNames
+				+ ", windSpeedLimit:" + windSpeedLimit
 				+ "} [";
 		int value;
 		for (int i = 0; i < len; i++) {
