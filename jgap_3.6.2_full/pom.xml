@@ -146,6 +146,12 @@
             <version>1.7</version>
             <type>jar</type>
         </dependency>
+        
+        <dependency> <!-- Apache Chemistry dependencies -->
+            <groupId>org.apache.chemistry.opencmis</groupId>
+            <artifactId>chemistry-opencmis-client-impl</artifactId>
+            <version>0.9.0</version>
+        </dependency>
 
 		<!-- Interface -->
 		<dependency>

@@ -1,4 +1,4 @@
-package com.tecnalia.epes.tamoin;
+package com.tecnalia.epes.tamoin.ganttchart;
 
 /**
  * @Author Kushal Paudyal
@@ -11,6 +11,8 @@ package com.tecnalia.epes.tamoin;
 
 import java.awt.Color;
 import java.awt.Paint;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -32,134 +34,14 @@ import org.jfree.data.gantt.TaskSeriesCollection;
 import org.jfree.data.time.SimpleTimePeriod;
 import org.jgap.IChromosome;
 
+import com.tecnalia.epes.tamoin.MaintenanceTaskGene;
+import com.tecnalia.epes.tamoin.util.cmis.CMISConnector;
+
 public class TamoinGanttChart {
 
 	private static final long serialVersionUID = 3488074583840465632L;
 
-	private IChromosome bestSolutionSoFar;
-	
-	public static IntervalCategoryDataset createDataset() {
- 
-/**
-* Creating a task series
-* And adding planned tasks dates on the series.
-*/
-TaskSeries seriesOne = new TaskSeries("Planned Implementation");
- 
-/**Adding data in this series**/
-seriesOne.add(new Task("Sanjaal Domain Registration",
-new SimpleTimePeriod(makeDate(10, Calendar.JUNE, 2007),
-makeDate(15, Calendar.JUNE, 2007))));
- 
-seriesOne.add(new Task("Feature Addition - Java Blog",
-new SimpleTimePeriod(makeDate(9, Calendar.JULY, 2007),
-makeDate(19, Calendar.JULY, 2007))));
- 
-seriesOne.add(new Task("Feature Addition - PHPBB Forum",
-new SimpleTimePeriod(makeDate(10, Calendar.AUGUST, 2007),
-makeDate(15, Calendar.AUGUST, 2007))));
- 
-seriesOne.add(new Task("Feature Addition - Tagged Mails",
-new SimpleTimePeriod(makeDate(6, Calendar.MAY, 2007), makeDate(
-30, Calendar.MAY, 2007))));
- 
-seriesOne.add(new Task("Feature Addition - H1B Visa Portal",
-new SimpleTimePeriod(makeDate(2, Calendar.JUNE, 2007),
-makeDate(2, Calendar.JUNE, 2007))));
- 
-seriesOne.add(new Task("Feature Addition - Events Gallery",
-new SimpleTimePeriod(makeDate(3, Calendar.JUNE, 2007),
-makeDate(31, Calendar.JULY, 2007))));
- 
-seriesOne.add(new Task("Google Adsense Integration",
-new SimpleTimePeriod(makeDate(1, Calendar.AUGUST, 2007),
-makeDate(8, Calendar.AUGUST, 2007))));
- 
-seriesOne.add(new Task("Adbrite Advertisement Integration",
-new SimpleTimePeriod(makeDate(10, Calendar.AUGUST, 2007),
-makeDate(10, Calendar.AUGUST, 2007))));
- 
-seriesOne.add(new Task("InfoLink Advertisement Integration",
-new SimpleTimePeriod(makeDate(12, Calendar.AUGUST, 2007),
-makeDate(12, Calendar.SEPTEMBER, 2007))));
- 
-seriesOne.add(new Task("Feature Testing", new SimpleTimePeriod(
-makeDate(13, Calendar.SEPTEMBER, 2007), makeDate(31,
-Calendar.OCTOBER, 2007))));
- 
-seriesOne.add(new Task("Public Release", new SimpleTimePeriod(makeDate(
-1, Calendar.NOVEMBER, 2007), makeDate(15, Calendar.NOVEMBER,
-2007))));
- 
-seriesOne.add(new Task("Post Release Bugs Collection",
-new SimpleTimePeriod(makeDate(28, Calendar.NOVEMBER, 2007),
-makeDate(30, Calendar.NOVEMBER, 2007))));
- 
-/**
-* Creating another task series
-*/
-TaskSeries seriesTwo = new TaskSeries("Actual Implementation");
- 
-/**Adding data in this series**/
-seriesTwo.add(new Task("Sanjaal Domain Registration",
-new SimpleTimePeriod(makeDate(11, Calendar.JUNE, 2007),
-makeDate(14, Calendar.JUNE, 2007))));
- 
-seriesTwo.add(new Task("Feature Addition - Java Blog",
-new SimpleTimePeriod(makeDate(11, Calendar.JULY, 2007),
-makeDate(19, Calendar.JULY, 2007))));
- 
-seriesTwo.add(new Task("Feature Addition - PHPBB Forum",
-new SimpleTimePeriod(makeDate(10, Calendar.AUGUST, 2007),
-makeDate(17, Calendar.AUGUST, 2007))));
- 
-seriesTwo.add(new Task("Feature Addition - Tagged Mails",
-new SimpleTimePeriod(makeDate(7, Calendar.MAY, 2007), makeDate(
-1, Calendar.JUNE, 2007))));
- 
-seriesTwo.add(new Task("Feature Addition - H1B Visa Portal",
-new SimpleTimePeriod(makeDate(2, Calendar.JUNE, 2007),
-makeDate(4, Calendar.JUNE, 2007))));
- 
-seriesTwo.add(new Task("Feature Addition - Events Gallery",
-new SimpleTimePeriod(makeDate(3, Calendar.JUNE, 2007),
-makeDate(13, Calendar.JULY, 2007))));
- 
-seriesTwo.add(new Task("Google Adsense Integration",
-new SimpleTimePeriod(makeDate(2, Calendar.AUGUST, 2007),
-makeDate(7, Calendar.AUGUST, 2007))));
- 
-seriesTwo.add(new Task("Adbrite Advertisement Integration",
-new SimpleTimePeriod(makeDate(10, Calendar.AUGUST, 2007),
-makeDate(11, Calendar.AUGUST, 2007))));
- 
-seriesTwo.add(new Task("InfoLink Advertisement Integration",
-new SimpleTimePeriod(makeDate(13, Calendar.AUGUST, 2007),
-makeDate(15, Calendar.SEPTEMBER, 2007))));
- 
-seriesTwo.add(new Task("Feature Testing", new SimpleTimePeriod(
-makeDate(13, Calendar.SEPTEMBER, 2007), makeDate(3,
-Calendar.NOVEMBER, 2007))));
- 
-seriesTwo.add(new Task("Public Release", new SimpleTimePeriod(makeDate(
-4, Calendar.NOVEMBER, 2007), makeDate(15, Calendar.NOVEMBER,
-2007))));
- 
-seriesTwo.add(new Task("Post Release Bugs Collection",
-new SimpleTimePeriod(makeDate(28, Calendar.NOVEMBER, 2007),
-makeDate(3, Calendar.DECEMBER, 2007))));
- 
-final TaskSeriesCollection collection = new TaskSeriesCollection();
- 
-/**
-* Adding the series to the collection
-* Holds actual Dates.
-*/
-collection.add(seriesOne);
-collection.add(seriesTwo);
- 
-return collection;
-}
+	private IChromosome bestSolutionSoFar;	
 
 	private static Date makeDate(final int day, final int month, final int year) {
 
@@ -196,13 +78,6 @@ return collection;
 
 			public Paint getItemPaint(int row, int column) {
 
-				/*if (column < transitionWF1toWF2Final) {
-					return Color.RED;
-				} else if (column >= transitionWF1toWF2Final && column < transitionWF2toWF3Final) {
-					return Color.BLUE;
-				} else {
-					return Color.GREEN;
-				}*/
 				if (((MaintenanceTaskGene) bestSolutionSoFar.getGene(column))
 						.getWindFarm() == 1) {
 					return Color.RED;
@@ -233,54 +108,57 @@ return collection;
 			 * FileName Second Parameter: Chart To Save Third Parameter: Height
 			 * Of Picture Fourth Parameter: Width Of Picture
 			 */
-			ChartUtilities.saveChartAsJPEG(new File(fileName), chart, 2048, 768*2);
+			ChartUtilities.saveChartAsJPEG(new File(fileName), chart, 2048, 768*2);			
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.err.println("Problem occurred creating chart.");
+		}
+	}
+	
+	public void saveChartInVCN(JFreeChart chart) {		
+		try {
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ChartUtilities.writeChartAsJPEG(baos, chart, 2048, 768*2);
+			byte[] content = baos.toByteArray();			
+			CMISConnector connector = new CMISConnector();
+			connector.saveGanttChartInVCN(content);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.err.println("Problem occurred creating chart.");
 		}
 	}
 
-	/**
-	 * Testing the Gantt Chart Creation
-	 */
-	public static void main(final String[] args) {
-
-		final TamoinGanttChart chartCreator = new TamoinGanttChart();
-		System.out.println("...Creating Dataset");
-		IntervalCategoryDataset dataset = createDataset();
-
-		System.out.println("...Creating Chart");
-		JFreeChart chart = chartCreator.createChart(dataset);
-
-		String fileName = "/home/epes/TamoinGantChart-" + new Timestamp((new java.util.Date()).getTime()) + ".jpg";
-
-		System.out.println("...Saving the Chart");
-		chartCreator.saveChart(chart, fileName);
-
-		System.out.println("...Chart Created Successfully and Saved");
-		System.out.println("Output Chart File Location: " + fileName);
-	}
-	
 	// Entry point
-	public static void createGanttChart(IChromosome bestSolutionSoFar) {
+	public static void createGanttChart(IChromosome bestSolutionSoFar, boolean saveGanttChartToVCN) {
 
 		final TamoinGanttChart chartCreator = new TamoinGanttChart();
 		chartCreator.setBestSolutionSoFar(bestSolutionSoFar);
 		
 		System.out.println("...Creating Dataset");
-		//IntervalCategoryDataset dataset = createDataset();
 		IntervalCategoryDataset dataset = createDataset(bestSolutionSoFar);
 
 		System.out.println("...Creating Chart");
 		JFreeChart chart = chartCreator.createChart(dataset);
+		
+		if (saveGanttChartToVCN == false) {
+			
+			String fileName = "/home/epes/TamoinGantChart-" + new Timestamp((new java.util.Date()).getTime()) + ".jpg";
 
-		String fileName = "/home/epes/TamoinGantChart-" + new Timestamp((new java.util.Date()).getTime()) + ".jpg";
+			System.out.println("...Saving the Chart");
+			chartCreator.saveChart(chart, fileName);
 
-		System.out.println("...Saving the Chart");
-		chartCreator.saveChart(chart, fileName);
+			System.out.println("...Chart Created Successfully and Saved");
+			System.out.println("Output Chart File Location: " + fileName);
+			
+		} else {
+			
+			// Save the Gantt chart into the VCN
+			System.out.println("...Saving the Chart into the VCN");
+			chartCreator.saveChartInVCN(chart);
+			
+		}
 
-		System.out.println("...Chart Created Successfully and Saved");
-		System.out.println("Output Chart File Location: " + fileName);
 	}
 
 	private static IntervalCategoryDataset createDataset(
@@ -319,7 +197,11 @@ return collection;
 					    now.set(Calendar.HOUR_OF_DAY, 8);
 						now.set(Calendar.MINUTE, 0);
 						now.set(Calendar.SECOND, 0);
-					}  
+					}  else {
+						now.set(Calendar.HOUR_OF_DAY, 8);
+						now.set(Calendar.MINUTE, 0);
+						now.set(Calendar.SECOND, 0);
+					}
 					
 					// now is the date we want  
 					//String format = new SimpleDateFormat(...).format(date);
@@ -370,17 +252,7 @@ return collection;
     					seriesTwo.add(new Task(taskName,
     							new SimpleTimePeriod(initTaskDate, endTaskDate)));
     				}
-					
-					/*if (task.getWindFarm() == 1) {
-						seriesOne.add(new Task(taskName,
-								new SimpleTimePeriod(initTaskDate, endTaskDate)));
-					} else if (task.getWindFarm() == 2) {
-						seriesTwo.add(new Task(taskName,
-								new SimpleTimePeriod(initTaskDate, endTaskDate)));
-					} else if (task.getWindFarm() == 3) {
-						seriesThree.add(new Task(taskName,
-								new SimpleTimePeriod(initTaskDate, endTaskDate)));
-					}*/					
+				
 					break;
 				}
 			}

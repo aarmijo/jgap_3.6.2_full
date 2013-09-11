@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -13,6 +14,8 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import com.tecnalia.epes.tamoin.util.cmis.CMISConnector;
 
 public class XLSReader {
 
@@ -23,7 +26,7 @@ public class XLSReader {
 		// TODO Auto-generated method stub
 		String weekNumber = "11";
 		
-		ArrayList<XLSTask> xlsTasksArrayList = readXLSTasks(weekNumber);
+		ArrayList<XLSTask> xlsTasksArrayList = readXLSTasks(weekNumber, false);
 		
 		System.out.println("Tasks read from the xls file: " + xlsTasksArrayList);
 		
@@ -35,14 +38,19 @@ public class XLSReader {
 
 	}
 	
-	public static ArrayList<XLSTask> readXLSTasks (String weekNumber) {
+	public static ArrayList<XLSTask> readXLSTasks (String weekNumber, boolean readXlsFromVCN) {
 		
 		ArrayList<XLSTask> xlsTasksArrayList = new ArrayList<XLSTask>();
 		ArrayList<XLSTask> filteredXlsTasksArrayList = new ArrayList<XLSTask>();
 		
 		try {
-		     
-		    FileInputStream file = new FileInputStream(new File("Seguimiento Planificación PROTOTYPE AREA 2013.xlsx"));
+			InputStream file = null;
+			if (readXlsFromVCN == false) {
+				file = new FileInputStream(new File("Seguimiento Planificación PROTOTYPE AREA 2013.xlsx"));
+			} else if (readXlsFromVCN == true) {
+				CMISConnector connector = new CMISConnector();			
+				file  = connector.readXlsFileFromVCN();
+			}		    
 		     
 		    //Get the workbook instance for XLS file
 		    XSSFWorkbook workbook = new XSSFWorkbook(file);

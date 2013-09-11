@@ -249,6 +249,10 @@ public class MaintenanceTaskGeneTest
 	
 	public void testConstruct_2() {
 		
+		// Set general parameters
+		boolean readXlsFromVCN = false;
+		boolean saveGanttChartToVCN = false;
+		
 		// Set optimization parameters
 		boolean calculateWeatherForecast = false;
 		
@@ -318,7 +322,7 @@ public class MaintenanceTaskGeneTest
 		
 		String weekNumber = "08"; // 01 (162), 08 (888), 03 (396)
 		
-		ArrayList<XLSTask> xlsTasksArrayList = XLSReader.readXLSTasks(weekNumber);
+		ArrayList<XLSTask> xlsTasksArrayList = XLSReader.readXLSTasks(weekNumber, readXlsFromVCN);
 		
 		XLSTasksAdaptor xLSTaskAdaptor = new XLSTasksAdaptor(xlsTasksArrayList);
 		
@@ -400,7 +404,7 @@ public class MaintenanceTaskGeneTest
 	    System.out.println("BS: " + bestSolutionSoFar);
 	    System.out.println("BS Fitness value: " + v1);	    
 	    
-	    TamoinGanttChart.createGanttChart(bestSolutionSoFar);
+	    com.tecnalia.epes.tamoin.ganttchart.TamoinGanttChart.createGanttChart(bestSolutionSoFar, saveGanttChartToVCN);
 	}
 	
   /**
