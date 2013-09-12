@@ -6,6 +6,8 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Properties;
 
+import com.tecnalia.epes.tamoin.WindFarm;
+import com.tecnalia.epes.tamoin.wunderground.connector.WundergroundConnector;
 import com.tecnalia.epes.tamoin.wunderground.data.forecast.ForecastDayExtended;
 import com.tecnalia.epes.tamoin.wunderground.data.forecast.Wind;
 
@@ -136,5 +138,68 @@ public class WundergroundUtils {
 		}
 		return new int[] {windSpeedMonday, windSpeedTuesday, windSpeedWednesday,
 				windSpeedThursday, windSpeedFriday};
+	}
+
+	/**
+	 * 
+	 * @param calculateWeatherForecast Set to true if the forecast is to be extracted via external weather services 	 
+	 * @param windSpeeds User defined wind speeds in (m/s) for each of the wind farms. If the calculateWeatherForecast parameter is set to true,
+	 * the forecasted wind speeds extracted from the external weather services are used instead
+	 * @return WindFarm[] Array that contains the WindFarm instances with the wind information updated
+	 */
+	public static WindFarm[] calculateWindFarms(boolean calculateWeatherForecast, int[][] windSpeeds) {
+		// Set the wind farm wind conditions
+		WindFarm windFarmOne = null;
+		WindFarm windFarmTwo = null;
+		WindFarm windFarmThree = null;			
+		if (calculateWeatherForecast) {
+			try {
+				Properties prop;
+				prop = WundergroundUtils.load("windFarmOne.config.properties");
+		        WundergroundConnector wunder = new WundergroundConnector(prop);
+		        wunder.getDataFromWunder();
+		        List<ForecastDayExtended> forecastDayArrayList = wunder.getEnvelope().getForecast().getSimpleforecast().getForecastday();        
+		        //int nextMondayIndex = WundergroundUtils.getNextMondayIndex(forecastDayArrayList);
+		        int[] windSpeedsArray = WundergroundUtils.getWindSpeeds(forecastDayArrayList);
+
+				// Wind farm one forecasted wind speed
+		        windFarmOne = new WindFarm(1, windSpeedsArray[0], windSpeedsArray[1], windSpeedsArray[2], 
+		        		windSpeedsArray[3], windSpeedsArray[4]);
+		        
+		        prop.clear();
+		        prop = WundergroundUtils.load("windFarmTwo.config.properties");
+		        wunder = new WundergroundConnector(prop);
+		        wunder.getDataFromWunder();
+		        forecastDayArrayList = wunder.getEnvelope().getForecast().getSimpleforecast().getForecastday(); 
+		        windSpeedsArray = WundergroundUtils.getWindSpeeds(forecastDayArrayList);
+		        
+		        // Wind farm two forecasted wind speed
+		        windFarmTwo = new WindFarm(2, windSpeedsArray[0], windSpeedsArray[1], windSpeedsArray[2], 
+		        		windSpeedsArray[3], windSpeedsArray[4]);
+		        
+		        prop.clear();
+		        prop = WundergroundUtils.load("windFarmThree.config.properties");
+		        wunder = new WundergroundConnector(prop);
+		        wunder.getDataFromWunder();
+		        forecastDayArrayList = wunder.getEnvelope().getForecast().getSimpleforecast().getForecastday(); 
+		        windSpeedsArray = WundergroundUtils.getWindSpeeds(forecastDayArrayList);
+		        
+		        // Wind farm three forecasted wind speed
+		        windFarmThree = new WindFarm(3, windSpeedsArray[0], windSpeedsArray[1], windSpeedsArray[2], 
+		        		windSpeedsArray[3], windSpeedsArray[4]);
+			} catch (Exception e) {
+				// If there is any problem with the forecast set the windspeeds to 10 m/s
+				e.printStackTrace();
+				windFarmOne = new WindFarm(1, 10, 10, 10, 10, 10);
+				windFarmTwo = new WindFarm(2, 10, 10, 10, 10, 10);
+				windFarmThree = new WindFarm(3, 10, 10, 10, 10, 10);
+			}
+		} else {
+			// Set the windspeeds to user selected values
+			windFarmOne = new WindFarm(1, windSpeeds[0][0], windSpeeds[0][1], windSpeeds[0][2], windSpeeds[0][3], windSpeeds[0][4]);
+			windFarmTwo = new WindFarm(2, windSpeeds[1][0], windSpeeds[1][1], windSpeeds[1][2], windSpeeds[1][3], windSpeeds[1][4]);
+			windFarmThree = new WindFarm(3, windSpeeds[2][0], windSpeeds[2][1], windSpeeds[2][2], windSpeeds[2][3], windSpeeds[2][4]);
+		}		
+		return new WindFarm[] {windFarmOne, windFarmTwo, windFarmThree};
 	}	
 }

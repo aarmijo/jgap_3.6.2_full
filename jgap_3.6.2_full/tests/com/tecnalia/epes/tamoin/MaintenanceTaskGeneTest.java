@@ -253,71 +253,41 @@ public class MaintenanceTaskGeneTest
 		boolean readXlsFromVCN = false;
 		boolean saveGanttChartToVCN = false;
 		
-		// Set optimization parameters
+		// Set weather forecast parameters. Set to true if the forecast will be retrieved from a weather service
 		boolean calculateWeatherForecast = false;
+		// wind farm one user defined wind forecast (m/s)
+		int windFarmOneWindSpeedMonday = 10;
+		int windFarmOneWindSpeedTuesday = 10;
+		int windFarmOneWindSpeedWednesday = 10;
+		int windFarmOneWindSpeedThursday = 10;
+		int windFarmOneWindSpeedFriday = 10;
+		// wind farm two user defined wind forecast (m/s)
+		int windFarmTwoWindSpeedMonday = 10;
+		int windFarmTwoWindSpeedTuesday = 10;
+		int windFarmTwoWindSpeedWednesday = 10;
+		int windFarmTwoWindSpeedThursday = 10;
+		int windFarmTwoWindSpeedFriday = 10;
+		// wind farm three user defined wind forecast (m/s)
+		int windFarmThreeWindSpeedMonday = 10;
+		int windFarmThreeWindSpeedTuesday = 10;
+		int windFarmThreeWindSpeedWednesday = 10;
+		int windFarmThreeWindSpeedThursday = 10;
+		int windFarmThreeWindSpeedFriday = 10;
 		
-		// Set the wind farm wind conditions
-		WindFarm windFarmOne = null;
-		WindFarm windFarmTwo = null;
-		WindFarm windFarmThree = null;		
+		// Set optimization perspective
+		// If the next both two parameters are set to true or false, the default optimization perspective is used as a combination of costs
+		// optimization and availability optimization
+		boolean optimizeCosts = true;
+		boolean optimizeAvailability = true;
 		
-		if (calculateWeatherForecast) {
-			try {
-				Properties prop;
-				prop = WundergroundUtils.load("windFarmOne.config.properties");
-		        WundergroundConnector wunder = new WundergroundConnector(prop);
-		        wunder.getDataFromWunder();
-		        List<ForecastDayExtended> forecastDayArrayList = wunder.getEnvelope().getForecast().getSimpleforecast().getForecastday();        
-		        //int nextMondayIndex = WundergroundUtils.getNextMondayIndex(forecastDayArrayList);
-		        int[] windSpeedsArray = WundergroundUtils.getWindSpeeds(forecastDayArrayList);
-
-				// Wind farm one forecasted wind speed
-		        windFarmOne = new WindFarm(1, windSpeedsArray[0], windSpeedsArray[1], windSpeedsArray[2], 
-		        		windSpeedsArray[3], windSpeedsArray[4]);
-		        
-		        prop.clear();
-		        prop = WundergroundUtils.load("windFarmTwo.config.properties");
-		        wunder = new WundergroundConnector(prop);
-		        wunder.getDataFromWunder();
-		        forecastDayArrayList = wunder.getEnvelope().getForecast().getSimpleforecast().getForecastday(); 
-		        windSpeedsArray = WundergroundUtils.getWindSpeeds(forecastDayArrayList);
-		        
-		        // Wind farm two forecasted wind speed
-		        windFarmTwo = new WindFarm(2, windSpeedsArray[0], windSpeedsArray[1], windSpeedsArray[2], 
-		        		windSpeedsArray[3], windSpeedsArray[4]);
-		        
-		        prop.clear();
-		        prop = WundergroundUtils.load("windFarmThree.config.properties");
-		        wunder = new WundergroundConnector(prop);
-		        wunder.getDataFromWunder();
-		        forecastDayArrayList = wunder.getEnvelope().getForecast().getSimpleforecast().getForecastday(); 
-		        windSpeedsArray = WundergroundUtils.getWindSpeeds(forecastDayArrayList);
-		        
-		        // Wind farm three forecasted wind speed
-		        windFarmThree = new WindFarm(3, windSpeedsArray[0], windSpeedsArray[1], windSpeedsArray[2], 
-		        		windSpeedsArray[3], windSpeedsArray[4]);
-			} catch (Exception e) {
-				// If there is any problem with the forecast set the windspeeds to 10 m/s
-				e.printStackTrace();
-				windFarmOne = new WindFarm(1, 10, 10, 10, 
-		        		10, 10);
-				windFarmTwo = new WindFarm(2, 10, 10, 10, 
-		        		10, 10);
-				windFarmThree = new WindFarm(3, 10, 10, 10, 
-		        		10, 10);
-			}
-		} else {
-			// Set the windspeeds to 10 m/s or user selected values
-			windFarmOne = new WindFarm(1, 10, 10, 10, 
-	        		10, 10);
-			windFarmTwo = new WindFarm(2, 10, 10, 10, 
-	        		10, 10);
-			windFarmThree = new WindFarm(3, 10, 10, 10, 
-	        		10, 10);
-		}
-        
+		// Retrieve wind farm information about forecasted winds
+		int[][] windSpeeds = new int[][] {{windFarmOneWindSpeedMonday, windFarmOneWindSpeedTuesday, windFarmOneWindSpeedWednesday, windFarmOneWindSpeedThursday, windFarmOneWindSpeedFriday},
+				{windFarmTwoWindSpeedMonday, windFarmTwoWindSpeedTuesday, windFarmTwoWindSpeedWednesday, windFarmTwoWindSpeedThursday, windFarmTwoWindSpeedFriday},
+				{windFarmThreeWindSpeedMonday, windFarmThreeWindSpeedTuesday, windFarmThreeWindSpeedWednesday, windFarmThreeWindSpeedThursday, windFarmThreeWindSpeedFriday}};		
+		WindFarm[] windFarms = WundergroundUtils.calculateWindFarms(calculateWeatherForecast, windSpeeds);
+		
         // JGAP
-        
+		
 		Configuration config = new DefaultConfiguration();
 		
 		String weekNumber = "08"; // 01 (162), 08 (888), 03 (396)
@@ -375,7 +345,7 @@ public class MaintenanceTaskGeneTest
 			   	config.setPopulationSize(1000); // 100
 			   	config.setPreservFittestIndividual(true);
 			    config.setKeepPopulationSizeConstant(false);	    
-			    config.setFitnessFunction(new MaintenanceFitnessFunction(windFarmOne, windFarmTwo, windFarmThree));
+			    config.setFitnessFunction(new MaintenanceFitnessFunction(windFarms[0], windFarms[1], windFarms[2], optimizeCosts, optimizeAvailability));
 			    config.setBreeder(new EPESGABreeder());
 				config.getGeneticOperators().clear();
 				config.addGeneticOperator(new CrossoverOperator(config, 0.70d));

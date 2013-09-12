@@ -13,7 +13,7 @@ import com.tecnalia.epes.tamoin.wunderground.utils.WundergroundUtils;
 public class MaintenanceFitnessFunction extends FitnessFunction {
 
 	public MaintenanceFitnessFunction(WindFarm windFarmOne,
-			WindFarm windFarmTwo, WindFarm windFarmThree) {
+			WindFarm windFarmTwo, WindFarm windFarmThree, boolean optimizeCosts, boolean optimizeAvailability) {
 		super();
 		this.windFarmOne = windFarmOne;
 		this.windFarmTwo = windFarmTwo;
@@ -22,6 +22,14 @@ public class MaintenanceFitnessFunction extends FitnessFunction {
 		this.weatherPriorityWindFarmOneArray = windFarmOne.calculateWeatherPriorityArray();
 		this.weatherPriorityWindFarmTwoArray = windFarmTwo.calculateWeatherPriorityArray();
 		this.weatherPriorityWindFarmThreeArray = windFarmThree.calculateWeatherPriorityArray();
+		
+		if (optimizeCosts == true & optimizeAvailability == true ) {
+			this.optimizeCosts = false;
+			this.optimizeAvailability= false;
+		} else {
+			this.optimizeCosts = optimizeCosts;
+			this.optimizeAvailability = optimizeAvailability;
+		}
 	}
 
 	private WindFarm windFarmOne;
@@ -32,7 +40,10 @@ public class MaintenanceFitnessFunction extends FitnessFunction {
 	private int[] weatherPriorityWindFarmTwoArray;
 	private int[] weatherPriorityWindFarmThreeArray;
 	
-    public WindFarm getWindFarmOne() {
+	private boolean optimizeCosts;
+	private boolean optimizeAvailability;
+	
+	public WindFarm getWindFarmOne() {
 		return windFarmOne;
 	}
 
@@ -1035,102 +1046,147 @@ public class MaintenanceFitnessFunction extends FitnessFunction {
 		int[] weatherPriorityWindFarmTwoArray = this.getWeatherPriorityWindFarmTwoArray();
 		int[] weatherPriorityWindFarmThreeArray = this.getWeatherPriorityWindFarmThreeArray();	
 		
-		int[] fitnessArray = new int[3];
+		int[] fitnessArray = new int[3];		
 		// wind farm 1 fitness value fitnessArray[0]
 		int fitnessValue = 0;
+		int multiplier = 0;
 		for (int i = 0; i < windFarmOneMaintenanceTasks.length; i++) {			
-			for (int j = 0; j < geneLength; j++) {
-				int multiplier = 0;
-				switch (j) {
-				case 0:
-					multiplier = 5;
-					break;
-				case 1:
-					multiplier = 4;
-					break;
-				case 2:
-					multiplier = 3;
-					break;
-				case 3:
-					multiplier = 2;
-					break;
-				case 4:
+			for (int j = 0; j < geneLength; j++) {				
+				if (optimizeAvailability) {
 					multiplier = 1;
-					break;
+				} else {
+					switch (j) {
+					case 0:
+						multiplier = 5;
+						break;
+					case 1:
+						multiplier = 4;
+						break;
+					case 2:
+						multiplier = 3;
+						break;
+					case 3:
+						multiplier = 2;
+						break;
+					case 4:
+						multiplier = 1;
+						break;
+					}
+				}							
+				if (optimizeCosts) {
+					fitnessValue += multiplier
+							* windFarmOneMaintenanceTasks[i][j]
+							* windFarmOneMaintenanceTasksArrayList.get(i)
+									.getPriority()
+							* 1
+							* calculateTaskWeatherPriority(windFarmOneMaintenanceTasksArrayList.get(i)
+									.getWindSpeedLimit(), windFarmOne.getWindSpeedsArray()[j]);
+				} else {
+					fitnessValue += multiplier
+							* windFarmOneMaintenanceTasks[i][j]
+							* windFarmOneMaintenanceTasksArrayList.get(i)
+									.getPriority()
+							* weatherPriorityWindFarmOneArray[j]
+							* calculateTaskWeatherPriority(windFarmOneMaintenanceTasksArrayList.get(i)
+									.getWindSpeedLimit(), windFarmOne.getWindSpeedsArray()[j]);
 				}
-				fitnessValue += multiplier
-						* windFarmOneMaintenanceTasks[i][j]
-						* windFarmOneMaintenanceTasksArrayList.get(i)
-								.getPriority()
-						* weatherPriorityWindFarmOneArray[j]
-						* calculateTaskWeatherPriority(windFarmOneMaintenanceTasksArrayList.get(i)
-								.getWindSpeedLimit(), windFarmOne.getWindSpeedsArray()[j]);
+
 			}
 		}
 		fitnessArray[0] = fitnessValue;		
 		
 		// wind farm 2 fitness value fitnessArray[1]
 		fitnessValue = 0;
+		multiplier = 0;
 		for (int i = 0; i < windFarmTwoMaintenanceTasks.length; i++) {			
-			for (int j = 0; j < geneLength; j++) {
-				int multiplier = 0;
-				switch (j) {
-				case 0:
-					multiplier = 5;
-					break;
-				case 1:
-					multiplier = 4;
-					break;
-				case 2:
-					multiplier = 3;
-					break;
-				case 3:
-					multiplier = 2;
-					break;
-				case 4:
+			for (int j = 0; j < geneLength; j++) {				
+				if (optimizeAvailability) {
 					multiplier = 1;
-					break;
+				} else {
+					switch (j) {
+					case 0:
+						multiplier = 5;
+						break;
+					case 1:
+						multiplier = 4;
+						break;
+					case 2:
+						multiplier = 3;
+						break;
+					case 3:
+						multiplier = 2;
+						break;
+					case 4:
+						multiplier = 1;
+						break;
+					}
+				}							
+				if (optimizeCosts) {
+					fitnessValue += multiplier
+							* windFarmTwoMaintenanceTasks[i][j]
+							* windFarmTwoMaintenanceTasksArrayList.get(i)
+									.getPriority()
+							* 1
+							* calculateTaskWeatherPriority(windFarmTwoMaintenanceTasksArrayList.get(i)
+									.getWindSpeedLimit(), windFarmTwo.getWindSpeedsArray()[j]);
+				} else {
+					fitnessValue += multiplier
+							* windFarmTwoMaintenanceTasks[i][j]
+							* windFarmTwoMaintenanceTasksArrayList.get(i)
+									.getPriority()
+							* weatherPriorityWindFarmTwoArray[j]
+							* calculateTaskWeatherPriority(windFarmTwoMaintenanceTasksArrayList.get(i)
+									.getWindSpeedLimit(), windFarmTwo.getWindSpeedsArray()[j]);
 				}
-				fitnessValue += multiplier
-						* windFarmTwoMaintenanceTasks[i][j]
-						* windFarmTwoMaintenanceTasksArrayList.get(i)
-								.getPriority()
-						* weatherPriorityWindFarmTwoArray[j]
-						* calculateTaskWeatherPriority(windFarmTwoMaintenanceTasksArrayList.get(i)
-								.getWindSpeedLimit(), windFarmTwo.getWindSpeedsArray()[j]);
+
 			}
 		}
 		fitnessArray[1] = fitnessValue;	
 		
 		// wind farm 3 fitness value fitnessArray[2]
 		fitnessValue = 0;
+		multiplier = 0;
 		for (int i = 0; i < windFarmThreeMaintenanceTasks.length; i++) {			
-			for (int j = 0; j < geneLength; j++) {
-				int multiplier = 0;
-				switch (j) {
-				case 0:
-					multiplier = 5;
-					break;
-				case 1:
-					multiplier = 4;
-					break;
-				case 2:
-					multiplier = 3;
-					break;
-				case 3:
-					multiplier = 2;
-					break;
-				case 4:
+			for (int j = 0; j < geneLength; j++) {				
+				if (optimizeAvailability) {
 					multiplier = 1;
-					break;
+				} else {
+					switch (j) {
+					case 0:
+						multiplier = 5;
+						break;
+					case 1:
+						multiplier = 4;
+						break;
+					case 2:
+						multiplier = 3;
+						break;
+					case 3:
+						multiplier = 2;
+						break;
+					case 4:
+						multiplier = 1;
+						break;
+					}
+				}							
+				if (optimizeCosts) {
+					fitnessValue += multiplier
+							* windFarmThreeMaintenanceTasks[i][j]
+							* windFarmThreeMaintenanceTasksArrayList.get(i)
+									.getPriority()
+							* 1
+							* calculateTaskWeatherPriority(windFarmThreeMaintenanceTasksArrayList.get(i)
+									.getWindSpeedLimit(), windFarmThree.getWindSpeedsArray()[j]);
+				} else {
+					fitnessValue += multiplier
+							* windFarmThreeMaintenanceTasks[i][j]
+							* windFarmThreeMaintenanceTasksArrayList.get(i)
+									.getPriority()
+							* weatherPriorityWindFarmThreeArray[j]
+							* calculateTaskWeatherPriority(windFarmThreeMaintenanceTasksArrayList.get(i)
+									.getWindSpeedLimit(), windFarmThree.getWindSpeedsArray()[j]);
 				}
-				fitnessValue += multiplier
-						* windFarmThreeMaintenanceTasks[i][j]
-						* windFarmThreeMaintenanceTasksArrayList.get(i)
-								.getPriority()
-						* weatherPriorityWindFarmThreeArray[j]
-						* calculateTaskWeatherPriority(windFarmThreeMaintenanceTasksArrayList.get(i)
-								.getWindSpeedLimit(), windFarmThree.getWindSpeedsArray()[j]);
+
 			}
 		}
 		fitnessArray[2] = fitnessValue;	
