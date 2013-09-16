@@ -665,7 +665,7 @@ public class Chromosome
    * @author Klaus Meffert
    * @since 1.0
    */
-  public IChromosome randomInitialChromosome(
+  public static IChromosome randomInitialChromosome(
       Configuration a_configuration)
       throws InvalidConfigurationException {
     // Sanity check: make sure the given configuration isn't null.

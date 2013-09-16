@@ -46,7 +46,7 @@ public class XLSReader {
 		try {
 			InputStream file = null;
 			if (readXlsFromVCN == false) {
-				file = new FileInputStream(new File("Seguimiento Planificación PROTOTYPE AREA 2013.xlsx"));
+				file = new FileInputStream(new File("/home/epes/git/jgap_3.6.2_full/jgap_3.6.2_full/Seguimiento Planificación PROTOTYPE AREA 2013.xlsx"));
 			} else if (readXlsFromVCN == true) {
 				CMISConnector connector = new CMISConnector();			
 				file  = connector.readXlsFileFromVCN();

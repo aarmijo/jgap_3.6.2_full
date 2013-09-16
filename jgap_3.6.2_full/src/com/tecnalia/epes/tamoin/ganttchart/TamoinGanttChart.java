@@ -157,6 +157,8 @@ public class TamoinGanttChart {
 			System.out.println("...Saving the Chart into the VCN");
 			chartCreator.saveChartInVCN(chart);
 			
+			System.out.println("...Chart Created Successfully and Saved");
+			
 		}
 
 	}
