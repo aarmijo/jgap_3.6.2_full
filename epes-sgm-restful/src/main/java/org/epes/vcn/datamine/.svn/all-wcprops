@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/epes/!svn/ver/139/epes-sgm-restful/trunk/src/main/java/org/epes/vcn/datamine
+END
+FileWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/epes/!svn/ver/139/epes-sgm-restful/trunk/src/main/java/org/epes/vcn/datamine/FileWriter.java
+END
+EpesDataMiner.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/epes/!svn/ver/139/epes-sgm-restful/trunk/src/main/java/org/epes/vcn/datamine/EpesDataMiner.java
+END
+Ticket.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/epes/!svn/ver/139/epes-sgm-restful/trunk/src/main/java/org/epes/vcn/datamine/Ticket.java
+END
+ContentExtractor.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/epes/!svn/ver/139/epes-sgm-restful/trunk/src/main/java/org/epes/vcn/datamine/ContentExtractor.java
+END
+Content.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/epes/!svn/ver/139/epes-sgm-restful/trunk/src/main/java/org/epes/vcn/datamine/Content.java
+END
+MimeTypes.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/epes/!svn/ver/139/epes-sgm-restful/trunk/src/main/java/org/epes/vcn/datamine/MimeTypes.java
+END

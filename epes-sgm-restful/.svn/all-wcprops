@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/epes/!svn/ver/138/epes-sgm-restful/trunk
+END
+Readme.txt
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/epes/!svn/ver/139/epes-sgm-restful/trunk/Readme.txt
+END
+build.properties
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/epes/!svn/ver/139/epes-sgm-restful/trunk/build.properties
+END
+build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/epes/!svn/ver/139/epes-sgm-restful/trunk/build.xml
+END
+pom.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/epes/!svn/ver/139/epes-sgm-restful/trunk/pom.xml
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/epes/!svn/ver/139/epes-sgm-restful/trunk/.project
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/epes/!svn/ver/139/epes-sgm-restful/trunk/.classpath
+END

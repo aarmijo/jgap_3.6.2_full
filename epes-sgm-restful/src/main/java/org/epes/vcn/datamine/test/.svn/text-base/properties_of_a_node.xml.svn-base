@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:app="http://www.w3.org/2007/app"
+	xmlns:cmisra="http://docs.oasis-open.org/ns/cmis/restatom/200908/"
+	xmlns:cmis="http://docs.oasis-open.org/ns/cmis/core/200908/" xmlns:alf="http://www.alfresco.org">
+	<author>
+		<name>admin</name>
+	</author>
+	<content type="text/plain"
+		src="http://localhost:9090/alfresco/service/cmis/s/workspace:SpacesStore/i/628d2be6-aaf2-404c-8854-1dad43acf7c1/content.txt" />
+	<id>urn:uuid:628d2be6-aaf2-404c-8854-1dad43acf7c1</id>
+	<link rel="self"
+		href="http://localhost:9090/alfresco/service/cmis/s/workspace:SpacesStore/i/628d2be6-aaf2-404c-8854-1dad43acf7c1" />
+	<link rel="enclosure"
+		href="http://localhost:9090/alfresco/service/cmis/s/workspace:SpacesStore/i/628d2be6-aaf2-404c-8854-1dad43acf7c1/content.txt"
+		type="text/plain" />
+	<link rel="edit"
+		href="http://localhost:9090/alfresco/service/cmis/s/workspace:SpacesStore/i/628d2be6-aaf2-404c-8854-1dad43acf7c1" />
+	<link rel="edit-media"
+		href="http://localhost:9090/alfresco/service/cmis/s/workspace:SpacesStore/i/628d2be6-aaf2-404c-8854-1dad43acf7c1/content.txt"
+		type="text/plain" />
+	<link rel="http://docs.oasis-open.org/ns/cmis/link/200908/allowableactions"
+		href="http://localhost:9090/alfresco/service/cmis/s/workspace:SpacesStore/i/628d2be6-aaf2-404c-8854-1dad43acf7c1/allowableactions" />
+	<link rel="http://docs.oasis-open.org/ns/cmis/link/200908/relationships"
+		href="http://localhost:9090/alfresco/service/cmis/s/workspace:SpacesStore/i/628d2be6-aaf2-404c-8854-1dad43acf7c1/rels" />
+	<link rel="http://docs.oasis-open.org/ns/cmis/link/200908/policies"
+		href="http://localhost:9090/alfresco/service/cmis/s/workspace:SpacesStore/i/628d2be6-aaf2-404c-8854-1dad43acf7c1/pols" />
+	<link rel="http://docs.oasis-open.org/ns/cmis/link/200908/acl"
+		href="http://localhost:9090/alfresco/service/cmis/s/workspace:SpacesStore/i/628d2be6-aaf2-404c-8854-1dad43acf7c1/acl" />
+	<link rel="up"
+		href="http://localhost:9090/alfresco/service/cmis/s/workspace:SpacesStore/i/628d2be6-aaf2-404c-8854-1dad43acf7c1/parents"
+		type="application/atom+xml;type=feed" />
+	<link rel="version-history"
+		href="http://localhost:9090/alfresco/service/cmis/s/workspace:SpacesStore/i/628d2be6-aaf2-404c-8854-1dad43acf7c1/versions" />
+	<link rel="current-version"
+		href="http://localhost:9090/alfresco/service/cmis/s/workspace:SpacesStore/i/628d2be6-aaf2-404c-8854-1dad43acf7c1?returnVersion=latest" />
+	<link rel="describedby"
+		href="http://localhost:9090/alfresco/service/cmis/type/D:epes:content" />
+	<link rel="service" href="http://localhost:9090/alfresco/service/cmis" />
+	<published>2013-02-05T16:36:05.734+01:00</published>
+	<summary></summary>
+	<title>Optimization result (1360078565640).txt</title>
+	<updated>2013-02-14T09:23:41.656+01:00</updated>
+	<app:edited>2013-02-14T09:23:41.656+01:00</app:edited>
+	<alf:icon>http://localhost:9090/alfresco/images/filetypes/txt.gif
+	</alf:icon>
+	<cmisra:object>
+		<cmis:properties>
+			<cmis:propertyInteger propertyDefinitionId="cmis:contentStreamLength"
+				displayName="Content Stream Length" queryName="cmis:contentStreamLength">
+				<cmis:value>125</cmis:value>
+			</cmis:propertyInteger>
+			<cmis:propertyId propertyDefinitionId="cmis:objectTypeId"
+				displayName="Object Type Id" queryName="cmis:objectTypeId">
+				<cmis:value>D:epes:content</cmis:value>
+			</cmis:propertyId>
+			<cmis:propertyString propertyDefinitionId="cmis:versionSeriesCheckedOutBy"
+				displayName="Version Series Checked Out By" queryName="cmis:versionSeriesCheckedOutBy" />
+			<cmis:propertyId propertyDefinitionId="cmis:versionSeriesCheckedOutId"
+				displayName="Version Series Checked Out Id" queryName="cmis:versionSeriesCheckedOutId" />
+			<cmis:propertyId propertyDefinitionId="cmis:versionSeriesId"
+				displayName="Version series id" queryName="cmis:versionSeriesId">
+				<cmis:value>workspace://SpacesStore/628d2be6-aaf2-404c-8854-1dad43acf7c1
+				</cmis:value>
+			</cmis:propertyId>
+			<cmis:propertyBoolean propertyDefinitionId="cmis:isLatestVersion"
+				displayName="Is Latest Version" queryName="cmis:isLatestVersion">
+				<cmis:value>true</cmis:value>
+			</cmis:propertyBoolean>
+			<cmis:propertyString propertyDefinitionId="cmis:versionLabel"
+				displayName="Version Label" queryName="cmis:versionLabel">
+				<cmis:value>1.1</cmis:value>
+			</cmis:propertyString>
+			<cmis:propertyBoolean propertyDefinitionId="cmis:isVersionSeriesCheckedOut"
+				displayName="Is Version Series Checked Out" queryName="cmis:isVersionSeriesCheckedOut">
+				<cmis:value>false</cmis:value>
+			</cmis:propertyBoolean>
+			<cmis:propertyString propertyDefinitionId="cmis:lastModifiedBy"
+				displayName="Last Modified By" queryName="cmis:lastModifiedBy">
+				<cmis:value>admin</cmis:value>
+			</cmis:propertyString>
+			<cmis:propertyString propertyDefinitionId="cmis:createdBy"
+				displayName="Created by" queryName="cmis:createdBy">
+				<cmis:value>admin</cmis:value>
+			</cmis:propertyString>
+			<cmis:propertyId propertyDefinitionId="alfcmis:nodeRef"
+				displayName="Alfresco Node Ref" queryName="alfcmis:nodeRef" />
+			<cmis:propertyBoolean propertyDefinitionId="cmis:isLatestMajorVersion"
+				displayName="Is Latest Major Version" queryName="cmis:isLatestMajorVersion">
+				<cmis:value>false</cmis:value>
+			</cmis:propertyBoolean>
+			<cmis:propertyId propertyDefinitionId="cmis:contentStreamId"
+				displayName="Content Stream Id" queryName="cmis:contentStreamId">
+				<cmis:value>store://2013/2/5/16/36/0f2bab9b-6b5b-4ffb-ad53-22ce3a6ad2b2.bin
+				</cmis:value>
+			</cmis:propertyId>
+			<cmis:propertyString propertyDefinitionId="cmis:name"
+				displayName="Name" queryName="cmis:name">
+				<cmis:value>Optimization result (1360078565640).txt</cmis:value>
+			</cmis:propertyString>
+			<cmis:propertyString propertyDefinitionId="cmis:contentStreamMimeType"
+				displayName="Content Stream MIME Type" queryName="cmis:contentStreamMimeType">
+				<cmis:value>text/plain</cmis:value>
+			</cmis:propertyString>
+			<cmis:propertyDateTime propertyDefinitionId="cmis:creationDate"
+				displayName="Creation Date" queryName="cmis:creationDate">
+				<cmis:value>2013-02-05T16:36:05.734+01:00</cmis:value>
+			</cmis:propertyDateTime>
+			<cmis:propertyString propertyDefinitionId="cmis:changeToken"
+				displayName="Change token" queryName="cmis:changeToken" />
+			<cmis:propertyString propertyDefinitionId="cmis:checkinComment"
+				displayName="Checkin Comment" queryName="cmis:checkinComment" />
+			<cmis:propertyId propertyDefinitionId="cmis:objectId"
+				displayName="Object Id" queryName="cmis:objectId">
+				<cmis:value>workspace://SpacesStore/628d2be6-aaf2-404c-8854-1dad43acf7c1
+				</cmis:value>
+			</cmis:propertyId>
+			<cmis:propertyBoolean propertyDefinitionId="cmis:isMajorVersion"
+				displayName="Is Major Version" queryName="cmis:isMajorVersion">
+				<cmis:value>false</cmis:value>
+			</cmis:propertyBoolean>
+			<cmis:propertyBoolean propertyDefinitionId="cmis:isImmutable"
+				displayName="Is Immutable" queryName="cmis:isImmutable">
+				<cmis:value>false</cmis:value>
+			</cmis:propertyBoolean>
+			<cmis:propertyId propertyDefinitionId="cmis:baseTypeId"
+				displayName="Base Type Id" queryName="cmis:baseTypeId">
+				<cmis:value>cmis:document</cmis:value>
+			</cmis:propertyId>
+			<cmis:propertyDateTime propertyDefinitionId="cmis:lastModificationDate"
+				displayName="Last Modified Date" queryName="cmis:lastModificationDate">
+				<cmis:value>2013-02-14T09:23:41.656+01:00</cmis:value>
+			</cmis:propertyDateTime>
+			<cmis:propertyString propertyDefinitionId="cmis:contentStreamFileName"
+				displayName="Content Stream Filename" queryName="cmis:contentStreamFileName">
+				<cmis:value>Optimization result (1360078565640).txt</cmis:value>
+			</cmis:propertyString>
+			<alf:aspects>
+				<alf:appliedAspects>P:sys:localized</alf:appliedAspects>
+				<alf:appliedAspects>P:cm:thumbnailModification</alf:appliedAspects>
+				<alf:appliedAspects>P:cm:titled</alf:appliedAspects>
+				<alf:appliedAspects>P:rn:renditioned</alf:appliedAspects>
+				<alf:appliedAspects>P:epes:process</alf:appliedAspects>
+				<alf:appliedAspects>P:cm:taggable</alf:appliedAspects>
+				<alf:appliedAspects>P:cm:lockable</alf:appliedAspects>
+				<alf:appliedAspects>P:epes:knowledge</alf:appliedAspects>
+				<alf:appliedAspects>P:epes:history</alf:appliedAspects>
+				<alf:appliedAspects>P:cm:generalclassifiable</alf:appliedAspects>
+				<alf:appliedAspects>P:cm:author</alf:appliedAspects>
+				<alf:properties>
+					<cmis:propertyString propertyDefinitionId="cm:lastThumbnailModification"
+						displayName="Last thumbnail modifcation data" queryName="cm:lastThumbnailModification">
+						<cmis:value>doclib:1360080802040</cmis:value>
+						<cmis:value>webpreview:1360080811801</cmis:value>
+					</cmis:propertyString>
+					<cmis:propertyString propertyDefinitionId="cm:description"
+						displayName="DescripciÃ³n" queryName="cm:description">
+						<cmis:value></cmis:value>
+					</cmis:propertyString>
+					<cmis:propertyString propertyDefinitionId="cm:title"
+						displayName="TÃ­tulo" queryName="cm:title">
+						<cmis:value></cmis:value>
+					</cmis:propertyString>
+					<cmis:propertyString propertyDefinitionId="epes:business_process_2"
+						displayName="epes:business_process_2" queryName="epes:business_process_2">
+						<cmis:value>business process reference</cmis:value>
+					</cmis:propertyString>
+					<cmis:propertyString propertyDefinitionId="epes:business_process_1"
+						displayName="epes:business_process_1" queryName="epes:business_process_1">
+						<cmis:value>business process reference</cmis:value>
+					</cmis:propertyString>
+					<cmis:propertyId propertyDefinitionId="cm:taggable"
+						displayName="Etiquetas" queryName="cm:taggable">
+						<cmis:value>workspace://SpacesStore/e734a569-81da-476e-a2cd-7ed71132edb3
+						</cmis:value>
+					</cmis:propertyId>
+					<cmis:propertyBoolean propertyDefinitionId="cm:lockIsDeep"
+						displayName="Bloqueo profundo" queryName="cm:lockIsDeep" />
+					<cmis:propertyString propertyDefinitionId="cm:lockType"
+						displayName="Tipo de bloqueo" queryName="cm:lockType" />
+					<cmis:propertyDateTime propertyDefinitionId="cm:expiryDate"
+						displayName="Fecha de expiraciÃ³n" queryName="cm:expiryDate" />
+					<cmis:propertyString propertyDefinitionId="cm:lockOwner"
+						displayName="Propietario del bloqueo" queryName="cm:lockOwner" />
+					<cmis:propertyString propertyDefinitionId="epes:knowledge_parameter_1"
+						displayName="epes:knowledge_parameter_1" queryName="epes:knowledge_parameter_1">
+						<cmis:value>knowledge parameter 2 value</cmis:value>
+					</cmis:propertyString>
+					<cmis:propertyString propertyDefinitionId="epes:knowledge_parameter_2"
+						displayName="epes:knowledge_parameter_2" queryName="epes:knowledge_parameter_2">
+						<cmis:value>knowledge parameter 2 value</cmis:value>
+					</cmis:propertyString>
+					<cmis:propertyString propertyDefinitionId="epes:optimization_result_1"
+						displayName="epes:optimization_result_1" queryName="epes:optimization_result_1">
+						<cmis:value>i1=0.5, i2=1, i3=1.5, o2=3</cmis:value>
+					</cmis:propertyString>
+					<cmis:propertyString propertyDefinitionId="epes:optimization_result_2"
+						displayName="epes:optimization_result_2" queryName="epes:optimization_result_2">
+						<cmis:value>Optimization result 2</cmis:value>
+					</cmis:propertyString>
+					<cmis:propertyId propertyDefinitionId="cm:categories"
+						displayName="CategorÃ­as" queryName="cm:categories" />
+					<cmis:propertyString propertyDefinitionId="cm:author"
+						displayName="Autor" queryName="cm:author">
+						<cmis:value></cmis:value>
+					</cmis:propertyString>
+				</alf:properties>
+			</alf:aspects>
+		</cmis:properties>
+	</cmisra:object>
+	<cmisra:pathSegment>Optimization result (1360078565640).txt
+	</cmisra:pathSegment>
+</entry>

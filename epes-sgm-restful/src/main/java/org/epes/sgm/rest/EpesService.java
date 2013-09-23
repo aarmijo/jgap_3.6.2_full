@@ -1,0 +1,50 @@
+package org.epes.sgm.rest;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+
+import org.epes.sgm.dmm.Optimizer;
+import org.epes.sgm.pojo.OptimizationResult;
+import org.epes.sgm.pojo.SchedulerInput;
+
+@Path("/optimize")
+public class EpesService {
+
+	@GET
+	@Path("/get")
+	@Produces(MediaType.APPLICATION_JSON)
+	public OptimizationResult getOptimizationResultInJSON(@QueryParam("o1") String o1) {
+
+		OptimizationResult result = new OptimizationResult();
+		result.setO1(o1);
+		result = Optimizer.optimize(result);
+		return result;
+	}
+
+	@POST
+	@Path("/post")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public OptimizationResult getOptimizationResultInJSON(OptimizationResult result) {
+		
+		result = Optimizer.optimize(result);
+		return result;
+		
+	}
+	
+	@POST
+	@Path("/bc1/post")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String optimizeScheduling(SchedulerInput input) {
+		
+		org.epes.sgm.dmm.Scheduler.schedule(input);
+		
+		return "Schedule generated!";		
+	}
+	
+}
