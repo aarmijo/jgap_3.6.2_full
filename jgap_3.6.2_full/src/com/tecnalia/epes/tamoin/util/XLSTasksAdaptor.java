@@ -80,6 +80,12 @@ public class XLSTasksAdaptor {
 		case "PREVENTIVO OTROS":
 			windSpeedLimit = 15;
 			break;
+		case "ALINEADO DE GENERADOR":
+			windSpeedLimit = 15;
+			break;
+		case "PREVENTIVO 12M":
+			windSpeedLimit = 15;
+			break;
 		}
 		return windSpeedLimit;
 	}
@@ -124,6 +130,12 @@ public class XLSTasksAdaptor {
 			duration = 0;
 			break;
 		case "PREVENTIVO OTROS":
+			duration = 0;
+			break;
+		case "ALINEADO DE GENERADOR":
+			duration = 0;
+			break;
+		case "PREVENTIVO 12M":
 			duration = 0;
 			break;
 		}
@@ -172,6 +184,12 @@ public class XLSTasksAdaptor {
 		case "PREVENTIVO OTROS":
 			duration = 0;
 			break;
+		case "ALINEADO DE GENERADOR":
+			duration = 0;
+			break;
+		case "PREVENTIVO 12M":
+			duration = 0;
+			break;
 		}
 		return duration;	
 	}
@@ -216,6 +234,12 @@ public class XLSTasksAdaptor {
 			duration = 7;
 			break;
 		case "PREVENTIVO OTROS":
+			duration = 7;
+			break;
+		case "ALINEADO DE GENERADOR":
+			duration = 1;
+			break;
+		case "PREVENTIVO 12M":
 			duration = 7;
 			break;
 		}
@@ -264,6 +288,12 @@ public class XLSTasksAdaptor {
 		case "PREVENTIVO OTROS":
 			maintenanceTeams = 1;
 			break;
+		case "ALINEADO DE GENERADOR":
+			maintenanceTeams = 1;
+			break;
+		case "PREVENTIVO 12M":
+			maintenanceTeams = 1;
+			break;
 		}
 		return maintenanceTeams;	
 	}
@@ -308,6 +338,12 @@ public class XLSTasksAdaptor {
 			priority = 1;
 			break;
 		case "PREVENTIVO OTROS":
+			priority = 1;
+			break;
+		case "ALINEADO DE GENERADOR":
+			priority = 1;
+			break;
+		case "PREVENTIVO 12M":
 			priority = 1;
 			break;
 		}

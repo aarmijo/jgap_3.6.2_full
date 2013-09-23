@@ -290,7 +290,7 @@ public class MaintenanceTaskGeneTest
 		
 		Configuration config = new DefaultConfiguration();
 		
-		String weekNumber = "08"; // 01 (162), 08 (888), 03 (396)
+		String weekNumber = "08"; // 01 (162), 08 (888), 03 (396), 37(618), 38(1182)
 		
 		ArrayList<XLSTask> xlsTasksArrayList = XLSReader.readXLSTasks(weekNumber, readXlsFromVCN);
 		
