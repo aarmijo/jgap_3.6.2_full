@@ -27,10 +27,13 @@ public class EpesClientPostBC1 {
 			readXlsFromVCN.put("readXlsFromVCN", true);
 			JSONObject saveGanttChartToVCN = new JSONObject();
 			saveGanttChartToVCN.put("saveGanttChartToVCN", true);
+			JSONObject leverageBC1ContentModel = new JSONObject();
+			leverageBC1ContentModel.put("leverageBC1ContentModel", false);
 			
 			JSONArray inputList = new JSONArray();
 			inputList.put(readXlsFromVCN);
 			inputList.put(saveGanttChartToVCN);
+			inputList.put(leverageBC1ContentModel);
 			
 			input.put("generalParameters", inputList);
 			
@@ -94,7 +97,7 @@ public class EpesClientPostBC1 {
 			input.put("optimizationPerspectiveParameters", inputList);
 			
 			// week number parameter
-			input.put("weekNumber", "08");
+			input.put("weekNumber", "01");
 			
 			//System.out.println(input.toString());			
 			ObjectMapper mapper = new ObjectMapper();

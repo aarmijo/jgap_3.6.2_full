@@ -20,6 +20,7 @@ import com.tecnalia.epes.tamoin.MaintenanceTaskGene;
 import com.tecnalia.epes.tamoin.MaintenanceThreeDaysTaskGene;
 import com.tecnalia.epes.tamoin.MaintenanceTwoDaysTaskGene;
 import com.tecnalia.epes.tamoin.WindFarm;
+import com.tecnalia.epes.tamoin.kpi.KpiCalculator;
 import com.tecnalia.epes.tamoin.util.GATask;
 import com.tecnalia.epes.tamoin.util.XLSReader;
 import com.tecnalia.epes.tamoin.util.XLSTask;
@@ -33,6 +34,7 @@ public class Scheduler {
 		// Set general parameters
 		boolean readXlsFromVCN = Boolean.valueOf(input.getGeneralParameters().get(0).get("readXlsFromVCN"));
 		boolean saveGanttChartToVCN = Boolean.valueOf(input.getGeneralParameters().get(1).get("saveGanttChartToVCN"));
+		boolean leverageBC1ContentModel = Boolean.valueOf(input.getGeneralParameters().get(2).get("leverageBC1ContentModel"));
 		
 		// Set weather forecast parameters. Set to true if the forecast will be retrieved from a weather service
 		boolean calculateWeatherForecast = Boolean.valueOf(input.getForecastParameters().get(0).get("calculateWeatherForecast"));
@@ -68,6 +70,8 @@ public class Scheduler {
 		WindFarm[] windFarms = WundergroundUtils.calculateWindFarms(calculateWeatherForecast, windSpeeds);
 		
         // JGAP
+		
+		Configuration.reset();
 		
 		Configuration config = new DefaultConfiguration();
 		
@@ -148,14 +152,71 @@ public class Scheduler {
 		//population.evolve();
 		
 		IChromosome bestSolutionSoFar = population.getFittestChromosome();
-	    double v1 = bestSolutionSoFar.getFitnessValue();
+	    double fitnessValue = bestSolutionSoFar.getFitnessValue();
 		
 	    //System.out.println(population);
 	    
 	    System.out.println("BS: " + bestSolutionSoFar);
-	    System.out.println("BS Fitness value: " + v1);	    
+	    System.out.println("BS Fitness value: " + fitnessValue);	    
 	    
-	    com.tecnalia.epes.tamoin.ganttchart.TamoinGanttChart.createGanttChart(bestSolutionSoFar, saveGanttChartToVCN);
+	    KpiCalculator kpiCalculator = new KpiCalculator(bestSolutionSoFar, windFarms);
+	    double[] kpis = new double [14];
+	    
+	    // KPIs related to costs
+	    int kpiDaysWindFarmOne = kpiCalculator.calculateNumberOfDaysWindFarmOne();
+	    double kpiTasksPerDaysWindFarmOne = kpiCalculator.calculateTasksPerNumberOfDaysWindFarmOne();
+	    System.out.println("KPI: Number of days with planned tasks in wind farm One: " + kpiDaysWindFarmOne);
+	    System.out.println("KPI: Number of tasks / Number of days with planned tasks in windfarm One: " + kpiTasksPerDaysWindFarmOne);
+	    kpis[0] = kpiDaysWindFarmOne;
+	    kpis[1] = kpiTasksPerDaysWindFarmOne;
+ 	    
+	    int kpiDaysWindFarmTwo = kpiCalculator.calculateNumberOfDaysWindFarmTwo();
+	    double kpiTasksPerDaysWindFarmTwo = kpiCalculator.calculateTasksPerNumberOfDaysWindFarmTwo();
+	    System.out.println("KPI: Number of days with planned tasks in wind farm Two: " + kpiDaysWindFarmTwo);
+	    System.out.println("KPI: Number of tasks / Number of days with planned tasks in windfarm Two: " + kpiTasksPerDaysWindFarmTwo);
+	    kpis[2] = kpiDaysWindFarmTwo;
+	    kpis[3] = kpiTasksPerDaysWindFarmTwo;
+	    
+	    int kpiDaysWindFarmThree = kpiCalculator.calculateNumberOfDaysWindFarmThree();
+	    double kpiTasksPerDaysWindFarmThree = kpiCalculator.calculateTasksPerNumberOfDaysWindFarmThree();
+	    System.out.println("KPI: Number of days with planned tasks in wind farm Three: " + kpiDaysWindFarmThree);
+	    System.out.println("KPI: Number of tasks / Number of days with planned tasks in windfarm Three: " + kpiTasksPerDaysWindFarmThree);
+	    kpis[4] = kpiDaysWindFarmThree;
+	    kpis[5] = kpiTasksPerDaysWindFarmThree;
+	    
+	    int kpiDaysWindFarmAll = kpiCalculator.calculateNumberOfDaysWindFarmAll();
+	    double kpiTasksPerDaysWindFarmAll = kpiCalculator.calculateTasksPerNumberOfDaysWindFarmAll();
+	    System.out.println("KPI: Number of days with planned tasks in All wind farms: " + kpiDaysWindFarmAll);
+	    System.out.println("KPI: Number of tasks / Number of days with planned tasks in All wind farms: " + kpiTasksPerDaysWindFarmAll);
+	    kpis[6] = kpiDaysWindFarmAll;
+	    kpis[7] = kpiTasksPerDaysWindFarmAll;
+	    
+	    
+	    // KPIs related to Km travelled and CO2 emisions
+	    int kpiKmTraveled = kpiCalculator.calculateKmTraveled();
+	    double kpiCO2Emissions = kpiCalculator.calculateCo2Emissions();
+		System.out.println("KPI: Km travelled by the maintenance teams: " + kpiKmTraveled);
+		System.out.println("KPI: CO2 Emissions(g): " + kpiCO2Emissions);
+	    kpis[8] = kpiKmTraveled;
+	    kpis[9] = kpiCO2Emissions;
+	    
+	    // KPIs related to availability
+	    double kpiAvailabilityWindFarmOne = kpiCalculator.calculateWindFarmOneAvailability();
+	    double kpiAvailabilityWindFarmTwo = kpiCalculator.calculateWindFarmTwoAvailability();
+	    double kpiAvailabilityWindFarmThree = kpiCalculator.calculateWindFarmThreeAvailability();
+	    double kpiAvailabilityWindFarmAll = kpiCalculator.calculateAvailability();
+		System.out.println("KPI: Average Windfarm One Availability: " + kpiAvailabilityWindFarmOne);
+		System.out.println("KPI: Average Windfarm Two Availability: " + kpiAvailabilityWindFarmTwo);
+		System.out.println("KPI: Average Windfarm Three Availability: " + kpiAvailabilityWindFarmThree);
+		System.out.println("KPI: Average Availability: " + kpiAvailabilityWindFarmAll);
+	    kpis[10] = kpiAvailabilityWindFarmOne;
+	    kpis[11] = kpiAvailabilityWindFarmTwo;
+	    kpis[12] = kpiAvailabilityWindFarmThree;
+	    kpis[13] = kpiAvailabilityWindFarmAll;
+	    
+	    //com.tecnalia.epes.tamoin.ganttchart.TamoinGanttChart.createGanttChart(bestSolutionSoFar, saveGanttChartToVCN);
+	    com.tecnalia.epes.tamoin.ganttchart.TamoinGanttChart.createGanttChart(bestSolutionSoFar, saveGanttChartToVCN, 
+	    		leverageBC1ContentModel, kpis, windFarms, optimizeCosts, optimizeAvailability, weekNumber, fitnessValue);
 	}
 
 }

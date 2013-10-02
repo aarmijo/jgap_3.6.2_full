@@ -35,6 +35,7 @@ import org.jfree.data.time.SimpleTimePeriod;
 import org.jgap.IChromosome;
 
 import com.tecnalia.epes.tamoin.MaintenanceTaskGene;
+import com.tecnalia.epes.tamoin.WindFarm;
 import com.tecnalia.epes.tamoin.util.cmis.CMISConnector;
 
 public class TamoinGanttChart {
@@ -115,14 +116,16 @@ public class TamoinGanttChart {
 		}
 	}
 	
-	public void saveChartInVCN(JFreeChart chart) {		
+	public void saveChartInVCN(JFreeChart chart, double[] kpis, boolean leverageBC1ContentModel, WindFarm[] windFarms, 
+			boolean optimizeCosts, boolean optimizeAvailability, String weekNumber, double fitnessValue) {		
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ChartUtilities.writeChartAsJPEG(baos, chart, 2048, 768*2);
 			byte[] content = baos.toByteArray();			
 			CMISConnector connector = new CMISConnector();
-			connector.saveGanttChartInVCN(content);
-			
+			connector.saveGanttChartInVCN(content, kpis,
+					leverageBC1ContentModel, windFarms, optimizeCosts,
+					optimizeAvailability, weekNumber, fitnessValue);			
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.err.println("Problem occurred creating chart.");
@@ -130,7 +133,9 @@ public class TamoinGanttChart {
 	}
 
 	// Entry point
-	public static void createGanttChart(IChromosome bestSolutionSoFar, boolean saveGanttChartToVCN) {
+	public static void createGanttChart(IChromosome bestSolutionSoFar, boolean saveGanttChartToVCN, 
+			boolean leverageBC1ContentModel, double[] kpis, WindFarm[] windFarms, boolean optimizeCosts, 
+			boolean optimizeAvailability, String weekNumber, double fitnessValue) {
 
 		final TamoinGanttChart chartCreator = new TamoinGanttChart();
 		chartCreator.setBestSolutionSoFar(bestSolutionSoFar);
@@ -155,7 +160,8 @@ public class TamoinGanttChart {
 			
 			// Save the Gantt chart into the VCN
 			System.out.println("...Saving the Chart into the VCN");
-			chartCreator.saveChartInVCN(chart);
+			chartCreator.saveChartInVCN(chart, kpis, leverageBC1ContentModel, windFarms, 
+					optimizeCosts, optimizeAvailability, weekNumber, fitnessValue);
 			
 			System.out.println("...Chart Created Successfully and Saved");
 			

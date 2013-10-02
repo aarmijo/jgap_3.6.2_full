@@ -11,10 +11,15 @@
 	<version>3.6</version>
 
 	<repositories>
-	  <repository>
-	    <id>gnujaxp maven2</id>
-	    <url>http://treebase.sourceforge.net/maven2/</url>
-	   </repository>
+		<repository>
+		<id>gnujaxp maven2</id>
+			<url>http://treebase.sourceforge.net/maven2/</url>
+		</repository>
+		<repository>
+			<id>maven.alfresco.com</id>
+			<name>Alfresco Maven Repository</name>
+			<url>http://maven.alfresco.com/nexus/content/groups/public/</url>
+		</repository>
 	</repositories>
 
 	<!-- Project information -->
@@ -137,6 +142,11 @@
             <groupId>org.apache.chemistry.opencmis</groupId>
             <artifactId>chemistry-opencmis-client-impl</artifactId>
             <version>0.9.0</version>
+        </dependency>
+        <dependency> <!-- Alfresco-opencmis-extension -->
+            <groupId>org.alfresco.cmis.client</groupId>
+            <artifactId>alfresco-opencmis-extension</artifactId>
+            <version>0.7</version>
         </dependency>
 
 		<!-- Interface -->

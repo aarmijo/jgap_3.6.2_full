@@ -16,6 +16,7 @@ public class SchedulerInput {
 		{
 			add(new HashMap<String, String>() {{put("readXlsFromVCN", "");}});
 			add(new HashMap<String, String>() {{put("saveGanttChartToVCN", "");}});
+			add(new HashMap<String, String>() {{put("leverageBC1ContentModel", "");}});
 		}
 	};
 	

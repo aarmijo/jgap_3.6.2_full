@@ -19,6 +19,16 @@ public class MainTests {
 		System.out.println(i);
 		System.out.println(j);
 		System.out.println(kInt);
+		
+		int a = 10;
+		int b = 3;
+		
+		double da = new Double(a);
+		double db = new Double(b);
+		
+		double c = da / db;
+		double d = 10 - da / db;
+		System.out.println("c:" + c);
+		System.out.println("d:" + d);	
 	}
-
 }
